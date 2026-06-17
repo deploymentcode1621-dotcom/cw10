@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-primary: #0d9488;
+    --brand-secondary: #06b6d4;
+    --brand-dark: #134e4a;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-gray-800 antialiased;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 bg-white hover:bg-teal-50 text-teal-700 font-semibold px-6 py-3 rounded-xl border-2 border-teal-600 transition-all duration-200 hover:-translate-y-0.5;
+  }
+
+  .btn-emergency {
+    @apply inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg animate-pulse-slow;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-gray-900 leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-500 mt-3 max-w-2xl;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200 bg-white text-gray-800 placeholder-gray-400;
+  }
+
+  .badge-emergency {
+    @apply inline-flex items-center gap-1 bg-red-100 text-red-700 text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+
+  .badge-available {
+    @apply inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-teal-600 to-cyan-500 bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .bg-hero {
+    background: linear-gradient(135deg, #134e4a 0%, #0d9488 55%, #06b6d4 100%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { @apply bg-gray-100; }
+::-webkit-scrollbar-thumb { @apply bg-teal-400 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-teal-600; }
+
+/*sliderr*/
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #0f766e !important;
+}
+
+/* logo */
+@keyframes ringPulse {
+  0%,100% {
+    box-shadow: 0 0 0 0 rgba(20,184,166,0);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(20,184,166,0.12);
+  }
+}
+
+.logo-ring {
+  animation: ringPulse 2.5s infinite;
+}
+/* 
+hospital name */
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 0 0 0px rgba(220, 38, 38, 0);
+  }
+
+  50% {
+    text-shadow: 0 0 12px rgba(220, 38, 38, 0.6);
+  }
+}
+
+.logo-title {
+  animation: textGlow 2.5s ease-in-out infinite;
+}
+
+
+/*stroke*/
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@keyframes pulseRed {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes pulseBlue {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes rippleOut {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0.2);
+    opacity: 0;
+  }
+}
+
+@keyframes imgFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes scanLine {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  3% {
+    opacity: 1;
+  }
+
+  97% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   READY-TO-USE CLASSES
+======================================== */
+
+.animate-pulse-red {
+  animation: pulseRed 2s ease-in-out infinite;
+}
+
+.animate-pulse-blue {
+  animation: pulseBlue 2s ease-in-out infinite;
+}
+
+.animate-ripple {
+  animation: rippleOut 2s linear infinite;
+}
+
+.animate-float-up {
+  animation: floatUp 4s linear infinite;
+}
+
+.animate-img-float {
+  animation: imgFloat 4s ease-in-out infinite;
+}
+
+.animate-scan-line {
+  animation: scanLine 3s linear infinite;
+}
