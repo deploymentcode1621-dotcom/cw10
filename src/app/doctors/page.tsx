@@ -62,46 +62,111 @@ const expertise = [
 export default function DoctorsPage() {
   return (
     <div>
-      <section className="bg-hero py-28 relative overflow-hidden">
-  <div className="absolute inset-0 opacity-10">
-    <div className="absolute top-10 left-20 w-40 h-40 border border-white rounded-full"></div>
-    <div className="absolute bottom-10 right-20 w-64 h-64 border border-white rounded-full"></div>
-  </div>
+     <section className="relative overflow-hidden min-h-[720px] md:h-[95vh] flex items-center">
 
-  <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
-    <span className="inline-block bg-white/10 text-white px-5 py-2 rounded-full text-sm font-medium mb-6">
-      Trusted Neurology & Neurosurgery Specialists
-    </span>
+  {/* Background Image */}
+  <Image
+    src="/images/doctors.jpeg"
+    alt="Ashwini Neuro Care Center Doctors"
+    fill
+    priority
+    className="object-cover object-center scale-105"
+  />
 
-    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-      Meet The Experts Behind
-      <span className="block text-teal-100">
-        Ashwini Neuro Care Center
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black/55" />
+
+  {/* Gradient */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60" />
+
+  {/* Content */}
+  <div className="relative z-10 w-full">
+    <div className="max-w-6xl mx-auto px-5 md:px-6 text-center">
+
+      {/* Badge */}
+      <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 backdrop-blur-xl px-4 py-2 md:px-6 md:py-3 text-xs md:text-sm font-medium text-white mb-6 md:mb-8">
+        Trusted Neurology & Neurosurgery Specialists
       </span>
-    </h1>
 
-    <p className="text-xl text-teal-100 max-w-3xl mx-auto leading-relaxed mb-10">
-      Serving Latur and surrounding regions with advanced neurology,
-      neurosurgery, stroke management, trauma care and critical care services.
-    </p>
+      {/* Heading */}
+      <h1
+        className="
+          mx-auto
+          max-w-5xl
+          text-4xl
+          sm:text-5xl
+          md:text-7xl
+          font-black
+          leading-[1.1]
+          tracking-tight
+          text-white
+          drop-shadow-[0_5px_25px_rgba(0,0,0,0.6)]
+        "
+      >
+        Meet The Experts Behind
 
-    <div className="flex justify-center gap-8 flex-wrap">
-      <div className="bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl">
-        <p className="text-3xl font-bold text-white">14+</p>
-        <p className="text-teal-100 text-sm">Years Experience</p>
+        <span className="block mt-2 text-teal-200">
+          Ashwini Neuro Care Center
+        </span>
+      </h1>
+
+      {/* Description */}
+      <p
+        className="
+          mt-6
+          md:mt-8
+          mx-auto
+          max-w-3xl
+          text-base
+          md:text-xl
+          leading-7
+          md:leading-9
+          text-gray-100
+        "
+      >
+        Serving Latur and surrounding regions with advanced
+        neurology, neurosurgery, stroke management,
+        trauma care and critical care services.
+      </p>
+
+      {/* Stats */}
+      <div className="mt-10 md:mt-16 grid grid-cols-2 md:flex md:flex-wrap justify-center gap-4 md:gap-8 max-w-xl mx-auto md:max-w-none">
+
+        <div className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl py-5 px-4 md:w-44 shadow-2xl">
+          <h3 className="text-3xl md:text-5xl font-bold text-white">
+            14+
+          </h3>
+
+          <p className="mt-2 text-xs md:text-sm text-gray-200">
+            Years Experience
+          </p>
+        </div>
+
+        <div className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl py-5 px-4 md:w-44 shadow-2xl">
+          <h3 className="text-3xl md:text-5xl font-bold text-white">
+            24/7
+          </h3>
+
+          <p className="mt-2 text-xs md:text-sm text-gray-200">
+            Emergency Care
+          </p>
+        </div>
+
+        <div className="col-span-2 md:col-span-1 rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl py-5 px-4 md:w-44 shadow-2xl">
+          <h3 className="text-3xl md:text-5xl font-bold text-white">
+            5000+
+          </h3>
+
+          <p className="mt-2 text-xs md:text-sm text-gray-200">
+            Patients Treated
+          </p>
+        </div>
+
       </div>
 
-      <div className="bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl">
-        <p className="text-3xl font-bold text-white">24/7</p>
-        <p className="text-teal-100 text-sm">Emergency Care</p>
-      </div>
-
-      <div className="bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl">
-        <p className="text-3xl font-bold text-white">5000+</p>
-        <p className="text-teal-100 text-sm">Patients Treated</p>
-      </div>
     </div>
   </div>
+
 </section>
 
       {/* Doctors */}

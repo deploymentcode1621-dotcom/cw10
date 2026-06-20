@@ -92,7 +92,7 @@ export default function HeroSection() {
       {/* ── Video — full bleed, parallax ── */}
       <motion.div className="absolute inset-0 z-0" style={{ y: videoY }}>
         <video
-          src="/images/ashwini_video.mp4"
+          src="/images/ashwini_video1.mp4"
           autoPlay
           muted
           loop

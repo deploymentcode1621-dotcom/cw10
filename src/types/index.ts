@@ -40,6 +40,7 @@ export interface GalleryImage {
   alt: string;
   category: "facility" | "equipment" | "team" | "ward";
   caption: string;
+  span?: "normal" | "tall" | "wide" | "big";
 }
 
 export interface Facility {
