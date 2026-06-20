@@ -95,13 +95,9 @@ export default function TestimonialsPage() {
                 </p>
 
                 <div className="flex items-center gap-4">
-                  <Image
-                    src={featured.avatar}
-                    alt={featured.name}
-                    width={56}
-                    height={56}
-                    className="w-14 h-14 rounded-full object-cover ring-2 ring-teal-100"
-                  />
+                 <div className="w-14 h-14 rounded-full bg-teal-100 flex items-center justify-center text-lg font-bold text-teal-700 ring-2 ring-teal-100">
+  {featured.name.charAt(0)}
+</div>
                   <div>
                     <p className="font-bold text-gray-900">{featured.name}</p>
                     <p className="text-sm text-gray-500">
@@ -161,13 +157,9 @@ export default function TestimonialsPage() {
 
                 {/* Author */}
                 <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                  <Image
-                    src={t.avatar}
-                    alt={t.name}
-                    width={40}
-                    height={40}
-                    className="w-10 h-10 rounded-full object-cover ring-2 ring-gray-100"
-                  />
+               <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-sm font-bold text-teal-700 ring-2 ring-gray-100">
+  {t.name.charAt(0)}
+</div>
                   <div>
                     <p className="font-semibold text-gray-900 text-sm">{t.name}</p>
                     <p className="text-xs text-gray-400">
