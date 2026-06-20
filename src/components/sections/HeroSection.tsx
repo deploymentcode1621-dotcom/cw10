@@ -173,7 +173,7 @@ className="relative z-10 w-full max-w-[1600px] mx-auto px-8 lg:px-20 xl:px-28 pt
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.45 }}
-            className="text-teal-400/70 text-[11px] sm:text-xs uppercase tracking-[0.24em] font-semibold mb-5"
+           className="text-red-500 text-[11px] sm:text-xs uppercase tracking-[0.24em] font-semibold mb-5"
           >
             Ashwini Accident &amp; Neuro Care Center · Latur, Maharashtra
           </motion.p>

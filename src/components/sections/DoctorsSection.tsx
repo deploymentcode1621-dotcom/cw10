@@ -49,20 +49,22 @@ export default function DoctorsSection() {
             >
               {/* Doctor Image */}
               <div className="relative">
-                <Image
-                  src={doctor.image}
-                  alt={doctor.name}
-                  width={700}
-                  height={700}
-                  className="w-full h-[550px] object-cover rounded-[32px] shadow-2xl"
-                />
+  {doctor.image && (
+    <Image
+      src={doctor.image}
+      alt={doctor.name}
+      width={700}
+      height={700}
+      className="w-full h-[550px] object-cover rounded-[32px] shadow-2xl"
+    />
+  )}
 
-                <div className="absolute top-6 right-6 bg-white rounded-2xl px-5 py-3 shadow-xl">
-                  <p className="text-base font-bold text-teal-700">
-                    {doctor.experience}+ Years
-                  </p>
-                </div>
-              </div>
+  <div className="absolute top-6 right-6 bg-white rounded-2xl px-5 py-3 shadow-xl">
+    <p className="text-base font-bold text-teal-700">
+      {doctor.experience}+ Years
+    </p>
+  </div>
+</div>
 
               {/* Doctor Content */}
               <div>

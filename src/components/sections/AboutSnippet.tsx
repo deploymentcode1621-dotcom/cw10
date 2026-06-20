@@ -16,8 +16,8 @@ const highlights = [
 
 export default function AboutSnippet() {
   return (
-  <section className="h-[calc(100vh-88px)] bg-white pt-8 pb-10">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full h-full flex items-center">
+  <section className="bg-white py-12 lg:py-20">
+     <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-16 lg:gap-20 items-center">
           {/* Image */}
           <motion.div
@@ -37,7 +37,7 @@ export default function AboutSnippet() {
             />
 
             {/* Experience Card */}
-            <div className="absolute -bottom-7 -right-7 hidden md:block">
+           <div className="absolute bottom-4 right-4 hidden lg:block">
   <div className="animate-glow rounded-3xl bg-teal-600 px-8 py-6 text-white shadow-2xl">
     <p className="text-5xl font-bold leading-none">20+</p>
     <p className="mt-2 text-sm uppercase tracking-wide text-teal-100">

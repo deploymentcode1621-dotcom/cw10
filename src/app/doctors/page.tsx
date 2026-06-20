@@ -226,40 +226,39 @@ export default function DoctorsPage() {
   </div>
 )}
 
-                <div className="grid grid-cols-3 gap-4 mb-8">
+               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
 
-  <div className="bg-gray-50 rounded-2xl p-5">
-    <h4 className="font-semibold text-sm">
+  <div className="bg-gray-50 rounded-2xl p-4">
+    <h4 className="font-semibold text-xs sm:text-sm">
       Experience
     </h4>
 
-    <p className="text-teal-600 font-bold mt-2">
+    <p className="text-teal-600 font-bold text-base sm:text-lg mt-2">
       {doctor.experience}+ Years
     </p>
   </div>
 
-  <div className="bg-gray-50 rounded-2xl p-5">
-    <h4 className="font-semibold text-sm">
+  <div className="bg-gray-50 rounded-2xl p-4 col-span-2 sm:col-span-1">
+    <h4 className="font-semibold text-xs sm:text-sm">
       Specialty
     </h4>
 
-    <p className="text-teal-600 font-bold mt-2">
+    <p className="text-teal-600 font-bold text-sm sm:text-lg mt-2 break-words leading-tight">
       {doctor.specialization}
     </p>
   </div>
 
-  <div className="bg-gray-50 rounded-2xl p-5">
-    <h4 className="font-semibold text-sm">
+  <div className="bg-gray-50 rounded-2xl p-4">
+    <h4 className="font-semibold text-xs sm:text-sm">
       Availability
     </h4>
 
-    <p className="text-teal-600 font-bold mt-2">
+    <p className="text-teal-600 font-bold text-base sm:text-lg mt-2">
       Mon - Sat
     </p>
   </div>
 
 </div>
-
                 <Link
                   href="/appointment"
                   className="btn-primary"
