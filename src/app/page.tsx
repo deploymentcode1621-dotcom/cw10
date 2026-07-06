@@ -5,9 +5,9 @@ import AboutSnippet from "@/components/sections/AboutSnippet";
 import StrokeAwarenessSection from "@/components/sections/StrokeAwarenessSection"
 import ServicesSection from "@/components/sections/ServicesSection";
 import DoctorsSection from "@/components/sections/DoctorsSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
+// import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import CTASection from "@/components/sections/CTASection";
-
+import VisonMission from "@/components/sections/VsionandMisson";
 export const metadata: Metadata = {
   title: "Ashwini Accident & Neuro Care Center | Best Hospital in Latur",
   description:
@@ -23,7 +23,8 @@ export default function HomePage() {
       <StrokeAwarenessSection/>
       <ServicesSection />
       <DoctorsSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
+      <VisonMission />
       <CTASection />
     </>
   );

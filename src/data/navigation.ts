@@ -20,6 +20,6 @@ export const navItems: NavItem[] = [
   { label: "Doctors", href: "/doctors" },
   { label: "Facilities", href: "/facilities" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Testimonials", href: "/testimonials" },
+  // { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ];

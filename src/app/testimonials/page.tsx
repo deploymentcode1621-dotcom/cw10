@@ -115,63 +115,7 @@ export default function TestimonialsPage() {
       )}
 
       {/* ── Testimonials grid ────────────────────────────────────── */}
-      <section className="pb-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-xs font-semibold tracking-[0.16em] uppercase text-teal-600 mb-2">
-              Patient Reviews
-            </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-              What Our Patients Say
-            </h2>
-            <p className="mt-3 text-gray-500 max-w-xl mx-auto">
-              Every review represents a life touched, a family relieved, and hope restored.
-            </p>
-          </div>
-
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-            {rest.map((t) => (
-              <div
-                key={t.id}
-                className="break-inside-avoid bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 p-6 flex flex-col gap-4"
-              >
-                {/* Header row */}
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex items-center gap-1">
-                    {Array.from({ length: t.rating }).map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                  <Quote className="w-6 h-6 text-teal-100 shrink-0" />
-                </div>
-
-                {/* Treatment tag */}
-                <span className="w-fit bg-teal-50 text-teal-700 text-[11px] font-semibold px-2.5 py-1 rounded-full">
-                  {t.treatment}
-                </span>
-
-                {/* Review text */}
-                <p className="text-gray-600 text-sm leading-relaxed flex-1">
-                  &ldquo;{t.review}&rdquo;
-                </p>
-
-                {/* Author */}
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-               <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-sm font-bold text-teal-700 ring-2 ring-gray-100">
-  {t.name.charAt(0)}
-</div>
-                  <div>
-                    <p className="font-semibold text-gray-900 text-sm">{t.name}</p>
-                    <p className="text-xs text-gray-400">
-                      {t.location} &middot; {t.date}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+   
 
       {/* ── Google CTA strip ─────────────────────────────────────── */}
       <section className="bg-white border-t border-gray-100 py-12">
