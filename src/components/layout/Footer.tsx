@@ -181,13 +181,13 @@ export default function Footer() {
       <div className="relative">
         <div className="absolute inset-0 bg-cyan-400/30 blur-xl rounded-full group-hover:bg-purple-500/40 transition-all duration-500" />
 
-        <Image
+        {/* <Image
           src="/images/cwxlogo.png"
           alt="Codewinx IT Solutions"
           width={42}
           height={42}
           className="relative h-10 w-10 object-contain transition-all duration-500 group-hover:scale-110"
-        />
+        /> */}
       </div>
 
       {/* Text */}
