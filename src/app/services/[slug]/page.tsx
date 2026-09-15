@@ -8,15 +8,19 @@ import { services } from "@/data/services";
 import CTASection from "@/components/sections/CTASection";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
-  const service = services.find((item) => item.slug === params.slug);
+  const { slug } = await params;
+
+  const service = services.find(
+    (item) => item.slug === slug
+  );
 
   if (!service) {
     return {
@@ -37,7 +41,11 @@ export async function generateStaticParams() {
 }
 
 export default async function ServicePage({ params }: Props) {
-  const service = services.find((item) => item.slug === params.slug);
+  const { slug } = await params;
+
+  const service = services.find(
+    (item) => item.slug === slug
+  );
 
   if (!service) {
     notFound();
