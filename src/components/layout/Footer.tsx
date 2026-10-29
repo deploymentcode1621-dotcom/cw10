@@ -191,15 +191,21 @@ export default function Footer() {
       </div>
 
       {/* Text */}
-      <div className="leading-tight">
-        <p className="text-xs text-gray-500">
-          Designed & Developed by
-        </p>
+      <a
+  href="https://www.codewinxitsolution.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="CodeWinx IT Solutions — opens in a new tab"
+  className="rounded-md text-center transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-300 md:text-right"
+>
+  <p className="text-xs text-gray-400">
+    Designed &amp; Developed by
+  </p>
 
-        <p className="font-semibold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-          Codewinx IT Solutions
-        </p>
-      </div>
+  <p className="mt-1 text-sm font-medium text-teal-300 hover:text-teal-200">
+    CodeWinx IT Solutions
+  </p>
+</a>
 
     </div>
 

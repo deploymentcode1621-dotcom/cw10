@@ -1,238 +1,316 @@
 import type { Metadata } from "next";
+import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, AlertCircle } from "lucide-react";
-
+import {
+  Activity,
+  Ambulance,
+  ArrowRight,
+  Brain,
+  CalendarDays,
+  CircleAlert,
+  HeartPulse,
+  Scan,
+  ScanLine,
+  Stethoscope,
+} from "lucide-react";
 import { services } from "@/data/services";
-import SectionHeader from "@/components/ui/SectionHeader";
-import CTASection from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
-  title: "Our Services",
+  title: "Departments & Services",
   description:
-    "Explore our specialized departments including Neurology, Neurosurgery, Spine Surgery, ICU, Trauma Care, MRI, CT Scan and more.",
+    "Information about clinical departments, diagnostic services and consultation arrangements at Ashwini Neuro Care, Latur.",
 };
+
+const presentation: Record<
+  string,
+  {
+    icon: LucideIcon;
+    background: string;
+    foreground: string;
+    category: string;
+  }
+> = {
+  neurology: {
+    icon: Brain,
+    background: "from-teal-50 to-emerald-100",
+    foreground: "text-teal-800",
+    category: "Clinical Department",
+  },
+  neurosurgery: {
+    icon: Stethoscope,
+    background: "from-blue-50 to-sky-100",
+    foreground: "text-blue-800",
+    category: "Clinical Department",
+  },
+  "spine-surgery": {
+    icon: Activity,
+    background: "from-violet-50 to-purple-100",
+    foreground: "text-violet-800",
+    category: "Clinical Department",
+  },
+  "trauma-care": {
+    icon: Ambulance,
+    background: "from-orange-50 to-amber-100",
+    foreground: "text-orange-800",
+    category: "Injury Care",
+  },
+  "emergency-care": {
+    icon: CircleAlert,
+    background: "from-rose-50 to-red-100",
+    foreground: "text-rose-800",
+    category: "Emergency Service",
+  },
+  "icu-care": {
+    icon: HeartPulse,
+    background: "from-cyan-50 to-teal-100",
+    foreground: "text-cyan-800",
+    category: "Intensive Care",
+  },
+  "ct-scan": {
+    icon: Scan,
+    background: "from-indigo-50 to-blue-100",
+    foreground: "text-indigo-800",
+    category: "Diagnostic Imaging",
+  },
+  "mri-scan": {
+    icon: ScanLine,
+    background: "from-fuchsia-50 to-purple-100",
+    foreground: "text-fuchsia-800",
+    category: "Diagnostic Imaging",
+  },
+};
+
+const orbitPositions = [
+  "left-[12%] top-[8%]",
+  "right-[10%] top-[8%]",
+  "left-[2%] top-[40%]",
+  "right-[1%] top-[40%]",
+  "left-[10%] bottom-[12%]",
+  "right-[9%] bottom-[12%]",
+  "left-[36%] top-0",
+  "left-[38%] bottom-0",
+];
+
+const focusClass =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700";
 
 export default function ServicesPage() {
   return (
-    <div>
-
-      {/* =======================================================
-                          HERO SECTION
-      ======================================================== */}
-
-      <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50 pt-12 md:pt-16 pb-10 md:pb-20">
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          {/* Heading */}
-
-          <div className="text-center max-w-4xl mx-auto mb-8 md:mb-14">
-
-            <span className="text-teal-600 font-semibold uppercase tracking-[0.25em] text-[11px] sm:text-sm">
-              OUR SPECIALIZED SERVICES
-            </span>
-
-            <h1 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-              Comprehensive
-              <br className="sm:hidden" />
-              {" "}Neuro Care
-            </h1>
-
-            <p className="mt-4 text-sm sm:text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed px-3">
-              Choose a department to explore detailed treatments,
-              specialists, advanced technology, and patient-focused care.
+    <main className="overflow-hidden bg-white">
+      {/* Illustrated hero */}
+      <section className="relative bg-gradient-to-b from-teal-50/70 via-white to-slate-50 pb-14 pt-12 sm:pt-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-teal-800">
+              Departments &amp; Services
             </p>
 
+            <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              Clinical Care.
+              <span className="block text-teal-800">
+                Clear Information.
+              </span>
+            </h1>
+
+            <p className="mx-auto mt-5 max-w-2xl leading-8 text-slate-600">
+              Browse clinical departments and diagnostic services.
+              Read about each service and contact the hospital to
+              confirm availability and consultation arrangements.
+            </p>
           </div>
 
-          {/* Brain Image */}
+          <div className="relative mx-auto mt-10 max-w-4xl">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-[15%] rounded-full bg-teal-200/40 blur-3xl"
+            />
 
-          <div className="relative flex justify-center items-center">
-
-            {/* Glow */}
-
-            <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-              <div className="w-[280px] h-[280px] sm:w-[450px] sm:h-[450px] md:w-[650px] md:h-[650px] rounded-full bg-teal-300/20 blur-[90px]" />
-            </div>
-
-            {/* Brain */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-[20%] inset-y-[8%] hidden rounded-full border border-teal-200/70 sm:block"
+            />
 
             <Image
               src="/images/brain.png"
-              alt="Brain"
+              alt="Illustration of the human brain"
               width={900}
               height={700}
               priority
-              className="relative z-10 w-[82%] sm:w-[70%] md:w-[60%] lg:w-[50%] h-auto object-contain"
+              sizes="(max-width: 639px) 90vw, 560px"
+              className="relative mx-auto h-auto w-[85%] max-w-[560px] object-contain sm:w-[65%]"
             />
-                        {/* ================= LABELS ================= */}
 
-            {/* MRI */}
-            <Link
-              href="/services/mri-scan"
-              className="absolute top-[18%] left-[2%] sm:left-[4%] bg-white px-2 py-1 sm:px-4 sm:py-2 rounded-full border shadow-lg text-[10px] sm:text-sm font-medium whitespace-nowrap hover:scale-105 hover:bg-teal-50 transition-all duration-300"
-            >
-              MRI
-            </Link>
+            {/* Desktop floating navigation */}
+            <div className="hidden sm:block">
+              {services.slice(0, 8).map((service, index) => (
+                <Link
+                  key={service.id}
+                  href={`/services/${service.slug}`}
+                  className={`absolute z-10 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 shadow-sm transition-colors hover:border-teal-300 hover:bg-teal-50 ${orbitPositions[index]} ${focusClass}`}
+                >
+                  {service.title}
+                </Link>
+              ))}
+            </div>
 
-            {/* CT Scan */}
-            <Link
-              href="/services/ct-scan"
-              className="absolute top-[44%] left-0 sm:left-[2%] bg-white px-2 py-1 sm:px-4 sm:py-2 rounded-full border shadow-lg text-[10px] sm:text-sm font-medium whitespace-nowrap hover:scale-105 hover:bg-teal-50 transition-all duration-300"
-            >
-              CT Scan
-            </Link>
-
-            {/* Spine Surgery */}
-            <Link
-              href="/services/spine-surgery"
-              className="absolute bottom-[18%] left-[2%] sm:left-[6%] bg-white px-2 py-1 sm:px-4 sm:py-2 rounded-full border shadow-lg text-[10px] sm:text-sm font-medium whitespace-nowrap hover:scale-105 hover:bg-teal-50 transition-all duration-300"
-            >
-              Spine Care
-            </Link>
-
-            {/* Neurology */}
-            <Link
-              href="/services/neurology"
-              className="absolute top-[6%] left-[14%] sm:left-[18%] bg-white px-2 py-1 sm:px-4 sm:py-2 rounded-full border shadow-lg text-[10px] sm:text-sm font-medium whitespace-nowrap hover:scale-105 hover:bg-teal-50 transition-all duration-300"
-            >
-              Neurology
-            </Link>
-
-            {/* Neurosurgery */}
-            <Link
-              href="/services/neurosurgery"
-              className="absolute top-[6%] right-[14%] sm:right-[18%] bg-white px-2 py-1 sm:px-4 sm:py-2 rounded-full border shadow-lg text-[10px] sm:text-sm font-medium whitespace-nowrap hover:scale-105 hover:bg-teal-50 transition-all duration-300"
-            >
-              Neurosurgery
-            </Link>
-
-            {/* Emergency Care */}
-            <Link
-              href="/services/emergency-care"
-              className="absolute top-[40%] right-0 sm:right-[3%] bg-white px-2 py-1 sm:px-4 sm:py-2 rounded-full border shadow-lg text-[10px] sm:text-sm font-medium whitespace-nowrap hover:scale-105 hover:bg-teal-50 transition-all duration-300"
-            >
-              Emergency
-            </Link>
-
-            {/* ICU */}
-            <Link
-              href="/services/icu-care"
-              className="absolute bottom-[18%] right-[3%] sm:right-[10%] bg-white px-2 py-1 sm:px-4 sm:py-2 rounded-full border shadow-lg text-[10px] sm:text-sm font-medium whitespace-nowrap hover:scale-105 hover:bg-teal-50 transition-all duration-300"
-            >
-              ICU Care
-            </Link>
-
-            {/* Trauma */}
-            <Link
-              href="/services/trauma-care"
-              className="absolute bottom-[4%] left-1/2 -translate-x-1/2 bg-white px-2 py-1 sm:px-4 sm:py-2 rounded-full border shadow-lg text-[10px] sm:text-sm font-medium whitespace-nowrap hover:scale-105 hover:bg-teal-50 transition-all duration-300"
-            >
-              Trauma Care
-            </Link>
-
+            <p className="relative mt-4 text-center text-xs text-slate-500">
+              Illustrative image, not a diagnostic scan.
+            </p>
           </div>
 
-        </div>
-
-      </section>
-            {/* =======================================================
-                    DEPARTMENT DIRECTORY
-      ======================================================== */}
-
-      <section className="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white">
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <SectionHeader
-            eyebrow="Choose Your Department"
-            title="Explore Our Medical Specialties"
-            subtitle="Select a department to learn more about our expert doctors, advanced treatments, and patient-centered care."
-          />
-
-          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-
+          {/* Mobile service navigation */}
+          <nav
+            aria-label="Browse services"
+            className="mt-6 flex flex-wrap justify-center gap-2 sm:hidden"
+          >
             {services.map((service) => (
-
               <Link
                 key={service.id}
                 href={`/services/${service.slug}`}
-                className="group block"
+                className={`rounded-full border border-teal-100 bg-white px-3 py-2 text-xs font-medium text-teal-900 ${focusClass}`}
               >
+                {service.title}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </section>
 
-                <article className="h-full overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+      {/* Directory */}
+      <section
+        aria-labelledby="services-heading"
+        className="bg-slate-50 py-16 sm:py-20"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-800">
+                Service Directory
+              </p>
 
-                  {/* Image */}
+              <h2
+                id="services-heading"
+                className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+              >
+                Departments &amp; Diagnostic Services
+              </h2>
+            </div>
 
-                  <div className="relative overflow-hidden">
+            <Link
+              href="/doctors"
+              className={`inline-flex shrink-0 items-center gap-2 rounded-lg text-sm font-semibold text-teal-800 ${focusClass}`}
+            >
+              Doctor Directory
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </Link>
+          </div>
 
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      width={600}
-                      height={400}
-                      className="h-60 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            {services.map((service, index) => {
+              const style =
+                presentation[service.slug] ??
+                presentation.neurology;
+              const Icon = style.icon;
+
+              return (
+                <article
+                  key={service.id}
+                  id={service.slug}
+                  className="group flex scroll-mt-28 flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-lg"
+                >
+                  <div
+                    className={`relative flex h-44 items-center justify-center overflow-hidden bg-gradient-to-br ${style.background}`}
+                  >
+                    <div
+                      aria-hidden="true"
+                      className="absolute -right-8 -top-8 h-40 w-40 rounded-full border-[20px] border-white/40"
                     />
 
-                    {service.isEmergency && (
-                      <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-red-600 px-3 py-1.5 text-xs font-semibold text-white shadow-lg">
-                        <AlertCircle className="h-4 w-4" />
-                        24/7 Emergency
-                      </div>
-                    )}
-
-                  </div>
-
-                  {/* Content */}
-
-                  <div className="p-7 flex flex-col h-[240px]">
-
-                    <span className="inline-flex w-fit rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-teal-700">
-                      Medical Department
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-5 top-4 text-xs font-semibold tracking-widest text-slate-600"
+                    >
+                      {String(index + 1).padStart(2, "0")}
                     </span>
 
-                    <h3 className="mt-5 text-2xl font-bold text-slate-900 group-hover:text-teal-600 transition-colors">
+                    <div className="relative rounded-3xl border border-white/80 bg-white/75 p-5 shadow-sm">
+                      <Icon
+                        aria-hidden="true"
+                        strokeWidth={1.5}
+                        className={`h-12 w-12 ${style.foreground}`}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-6 sm:p-7">
+                    <p
+                      className={`text-[11px] font-semibold uppercase tracking-[0.14em] ${style.foreground}`}
+                    >
+                      {style.category}
+                    </p>
+
+                    <h3 className="mt-3 text-2xl font-bold text-slate-900">
                       {service.title}
                     </h3>
 
-                    <p className="mt-4 text-gray-600 leading-7 line-clamp-4 flex-grow">
+                    <p className="mb-6 mt-4 text-sm leading-7 text-slate-600">
                       {service.shortDescription}
                     </p>
 
-                    <div className="mt-8 flex items-center justify-between">
-
-                      <span className="font-semibold text-teal-600">
-                        Explore Service
+                    <Link
+                      href={`/services/${service.slug}`}
+                      aria-label={`Read about ${service.title}`}
+                      className={`mt-auto flex items-center justify-between gap-3 rounded-lg border-t border-slate-100 pt-5 text-sm font-semibold text-teal-800 ${focusClass}`}
+                    >
+                      Service Information
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-50 transition-colors group-hover:bg-teal-100">
+                        <ArrowRight
+                          aria-hidden="true"
+                          className="h-4 w-4"
+                        />
                       </span>
-
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-600 text-white transition-transform duration-300 group-hover:translate-x-1">
-
-                        <ArrowRight className="h-5 w-5" />
-
-                      </div>
-
-                    </div>
-
+                    </Link>
                   </div>
-
                 </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-              </Link>
+      {/* Contact panel */}
+      <section className="bg-white px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-7 rounded-3xl bg-[#073b46] p-8 sm:p-12 lg:flex-row lg:items-center">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-200">
+              Consultation Information
+            </p>
 
-            ))}
+            <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">
+              Planning a Visit?
+            </h2>
 
+            <p className="mt-4 leading-7 text-teal-100">
+              Contact the hospital about service availability,
+              consultation timings, preparation instructions and fees.
+            </p>
           </div>
 
+          <Link
+            href="/appointment"
+            className={`inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-teal-950 hover:bg-teal-50 ${focusClass}`}
+          >
+            <CalendarDays aria-hidden="true" className="h-4 w-4" />
+            Appointment Enquiry
+          </Link>
         </div>
 
+        <p className="mx-auto mt-6 max-w-3xl text-center text-xs leading-6 text-slate-600">
+          In a medical emergency, seek immediate medical assistance.
+          Do not wait for an online enquiry response.
+        </p>
       </section>
-            {/* =======================================================
-                          CTA SECTION
-      ======================================================== */}
-
-      <CTASection />
-
-    </div>
+    </main>
   );
 }

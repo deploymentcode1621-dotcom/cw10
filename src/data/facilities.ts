@@ -1,52 +1,119 @@
 import type { Facility } from "@/types";
 
+/*
+ * Draft: hospital verification required before publication.
+ *
+ * Confirm that every listed facility actually exists.
+ * The descriptions explain each facility's purpose;
+ * they do not verify the hospital's equipment or staffing.
+ *
+ * Replace illustrations with actual approved hospital photos.
+ * Retain the existing IDs to preserve code references.
+ */
+
+const facilityIllustration =
+  "data:image/svg+xml," +
+  encodeURIComponent(`
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="700"
+      height="450"
+      viewBox="0 0 700 450"
+    >
+      <rect width="700" height="450" fill="#edf7f5"/>
+      <circle cx="350" cy="195" r="95" fill="#d2eae5"/>
+      <path
+        d="M330 135h40v40h40v40h-40v40h-40v-40h-40v-40h40z"
+        fill="#176c65"
+      />
+      <text
+        x="350"
+        y="350"
+        text-anchor="middle"
+        font-family="sans-serif"
+        font-size="20"
+        fill="#23534e"
+      >Facility information</text>
+    </svg>
+  `);
+
 export const facilities: Facility[] = [
   {
     id: "neuro-icu",
     name: "Neuro-ICU",
-    description: "20-bed dedicated neurological intensive care unit with advanced monitoring and ventilation systems.",
+    description:
+      "An intensive care setting for patients who require monitoring and treatment for critical neurological illness. Admission depends on clinical assessment and available resources.",
     icon: "Heart",
-    image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=600&h=400&fit=crop",
-    details: ["20 fully equipped ICU beds", "Bedside ICP monitoring", "Continuous EEG monitoring", "Advanced ventilators", "CRRT / hemodialysis", "24/7 intensivist coverage"],
+    image: facilityIllustration,
+    details: [
+      "Contact the hospital for bed availability",
+      "Confirm available monitoring and support facilities",
+      "Ask about visiting arrangements and family communication",
+    ],
   },
   {
     id: "neurosurgery-ot",
-    name: "Neuro Operating Theatre",
-    description: "Dedicated neurosurgery OT with intraoperative neurophysiological monitoring and microscopic surgery capability.",
+    name: "Neurosurgical Operating Theatre",
+    description:
+      "An operating theatre used for neurosurgical procedures. The procedure and equipment required depend on the patient's condition and the treating team's assessment.",
     icon: "Stethoscope",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
-    details: ["2 dedicated neuro-OTs", "Carl Zeiss surgical microscope", "Intraoperative neurophysiology (IONM)", "Neuronavigation system", "Endoscope tower", "Laminar airflow Class 100"],
+    image: facilityIllustration,
+    details: [
+      "Confirm the procedures offered at the hospital",
+      "Discuss pre-operative assessment and preparation",
+      "Ask about post-operative care arrangements",
+    ],
   },
   {
     id: "mri-3t",
-    name: "3 Tesla MRI Suite",
-    description: "High-field MRI for advanced neuroimaging including functional MRI, spectroscopy, and tractography.",
+    name: "MRI Imaging",
+    description:
+      "Magnetic resonance imaging uses a magnetic field and radio waves to produce images. Examination suitability is assessed through safety screening and review of the clinical request.",
     icon: "Scan",
-    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=600&h=400&fit=crop",
-    details: ["Siemens MAGNETOM Vida 3T MRI", "Functional MRI (fMRI)", "MR spectroscopy", "Diffusion tensor imaging (DTI)", "MR angiography", "Perfusion MRI"],
+    image: facilityIllustration,
+    details: [
+      "Confirm available examinations and timings",
+      "Ask about implant and device safety screening",
+      "Obtain preparation instructions before the examination",
+    ],
   },
   {
     id: "ct-128",
-    name: "128-Slice CT Scanner",
-    description: "Ultra-fast 128-slice MDCT for emergency and elective neuroimaging available around the clock.",
+    name: "CT Imaging",
+    description:
+      "Computed tomography uses X-rays to produce cross-sectional images. The examination protocol and any use of contrast depend on the clinical request and assessment.",
     icon: "Zap",
-    image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&h=400&fit=crop",
-    details: ["Siemens SOMATOM Drive 128-slice CT", "Available 24/7", "Dual-energy CT capability", "Whole-body trauma protocol", "CT perfusion for stroke", "AI-assisted reporting"],
+    image: facilityIllustration,
+    details: [
+      "Confirm available examinations and timings",
+      "Ask whether preparation or contrast assessment is required",
+      "Inform the clinical team about possible pregnancy",
+    ],
   },
   {
     id: "emergency",
-    name: "Emergency & Trauma Centre",
-    description: "Level-II trauma centre with dedicated resuscitation bays and trauma OT.",
+    name: "Emergency & Trauma Care",
+    description:
+      "Assessment and initial management of urgent illness and injury depend on clinical needs, staffing and available facilities. Referral or transfer may be required.",
     icon: "AlertCircle",
-    image: "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=600&h=400&fit=crop",
-    details: ["6 resuscitation bays", "24/7 trauma surgeon on-site", "Dedicated trauma OT", "FAST ultrasound at bedside", "Level-II Trauma Centre designation", "Ambulance bay with 4 vehicles"],
+    image: facilityIllustration,
+    details: [
+      "Confirm emergency service hours with the hospital",
+      "Ask about available emergency care facilities",
+      "Do not wait for an online response in an emergency",
+    ],
   },
   {
     id: "rehabilitation",
-    name: "Neuro Rehabilitation",
-    description: "Comprehensive rehabilitation for stroke, spinal injury, and post-surgical neurological recovery.",
+    name: "Neurological Rehabilitation",
+    description:
+      "Rehabilitation considers functional needs associated with neurological illness or injury. The care plan and disciplines involved depend on individual assessment and service availability.",
     icon: "Activity",
-    image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&h=400&fit=crop",
-    details: ["Physiotherapy gym", "Occupational therapy", "Speech & swallowing therapy", "Robotic gait training", "Neuropsychology services", "Home rehabilitation planning"],
+    image: facilityIllustration,
+    details: [
+      "Confirm the rehabilitation services offered",
+      "Ask about assessment and appointment arrangements",
+      "Discuss follow-up requirements with the treating team",
+    ],
   },
 ];

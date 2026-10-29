@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle, ArrowRight, CalendarDays, ScanLine, Siren, Stethoscope } from "lucide-react";
+import { CheckCircle, ArrowRight } from "lucide-react";
 
 // ─── VERIFIED FACTS — keep only what the hospital can prove with documents ───
 const FACTS = {
@@ -14,15 +14,10 @@ const FACTS = {
     "Established in 2005 in Latur",
     "3 Tesla MRI and 128-slice CT scan facilities", // confirm equipment + availability
     "CT scan available 24×7", // confirm
-    "NABH accredited · Cert. No. XXXX · valid till XXXX", // fill from certificate
-    "Trauma care services · Level-II designation by [issuing authority]", // only if officially designated
-    "Registered medical practitioners in every department", // confirm
-  ],
-  stats: [
-    { icon: CalendarDays, value: "Since 2005", label: "Serving Latur" },
-    { icon: ScanLine, value: "3T MRI", label: "& 128-slice CT" },
-    { icon: Siren, value: "24×7", label: "Emergency services" }, // confirm
-    { icon: Stethoscope, value: "Neuro · Spine · Trauma", label: "Departments" }, // confirm
+    // Add these ONLY after you have the documents (never leave placeholders):
+    // "NABH accredited · Cert. No. <real number> · valid till <real date>",
+    // "Level-II trauma centre designation by <issuing authority>",
+    "Registered medical practitioners in every department", // confirm it is true for all departments
   ],
 };
 
@@ -102,27 +97,6 @@ export default function AboutSnippet() {
               <ArrowRight className="h-5 w-5" />
             </Link>
           </motion.div>
-        </div>
-
-        {/* Fact cards — attractive, informational, fully allowed */}
-        <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-          {FACTS.stats.map(({ icon: Icon, value, label }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.08, duration: 0.5 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -4 }}
-              className="rounded-2xl border border-teal-100 bg-white p-5 lg:p-6 shadow-sm hover:shadow-lg transition-shadow"
-            >
-              <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
-                <Icon className="h-5 w-5" />
-              </div>
-              <p className="text-lg lg:text-xl font-bold text-gray-900 leading-snug">{value}</p>
-              <p className="text-sm text-gray-500 mt-1">{label}</p>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>

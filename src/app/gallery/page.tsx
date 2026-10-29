@@ -71,39 +71,52 @@ export default function GalleryPage() {
     <div className="bg-white">
       {/* HERO */}
 
-      <section className="relative overflow-hidden py-32">
-        <div className="absolute inset-0">
-          <Image
-  src="https://images.unsplash.com/photo-1516549655169-df83a0774514?w=1600&h=900&fit=crop"
-  alt="MRI Scanner"
-  fill
-  priority
-  className="object-cover"
-/>
+      {/* HERO */}
+<section className="relative overflow-hidden bg-slate-950 py-24 sm:py-32">
+  <div className="absolute inset-0">
+    <Image
+      src="https://images.unsplash.com/photo-1516549655169-df83a0774514?w=1600&h=900&fit=crop"
+      alt=""
+      fill
+      priority
+      sizes="100vw"
+      className="object-cover"
+    />
 
-          <div className="absolute inset-0 bg-black/70" />
-        </div>
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 bg-black/70"
+    />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <span className="uppercase tracking-[0.3em] text-teal-300 text-sm font-semibold">
-            Visual Journey
-          </span>
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 bg-gradient-to-t from-[#032d35]/90 via-transparent to-black/20"
+    />
+  </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold text-white mt-6">
-            Explore Our
-            <span className="block text-teal-400">
-              Neurology Centre
-            </span>
-          </h1>
+  <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+    <span className="text-xs font-semibold uppercase tracking-[0.3em] text-teal-200 sm:text-sm">
+      Photo Gallery
+    </span>
 
-          <p className="text-gray-200 max-w-2xl mx-auto mt-6 text-lg">
-            Discover our advanced facilities,
-            expert neurological team and
-            patient care environment through
-            our visual gallery.
-          </p>
-        </div>
-      </section>
+    <h1 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-7xl">
+      Hospital
+      <span className="mt-2 block text-teal-200">
+        Photo Gallery
+      </span>
+    </h1>
+
+    <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-gray-200 sm:text-lg">
+      Photographs and captions providing information about
+      the hospital environment, facilities, equipment and team.
+    </p>
+
+    <p className="mx-auto mt-8 max-w-xl text-xs leading-6 text-gray-300">
+      Banner: illustrative stock photograph. It does not depict
+      Ashwini Neuro Care or confirm equipment available at the hospital.
+    </p>
+  </div>
+</section>
 
       {/* GALLERY */}
 

@@ -2,12 +2,13 @@
   "name": "ashwini-neuro-care",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+ "scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "eslint .",
+  "typecheck": "tsc --noEmit"
+},
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "clsx": "^2.1.1",

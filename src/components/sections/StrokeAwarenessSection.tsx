@@ -1,14 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Scale,
-  Eye,
-  Smile,
-  Armchair,
-  Mic,
-  Clock3,
-} from "lucide-react";
+import { Scale, Eye, Smile, Hand, Mic, Clock3, PhoneCall } from "lucide-react";
+
+// Fill in once the doctor has reviewed and approved this content in writing.
+// Leave empty to hide the "Reviewed by" line (never publish placeholders).
+const REVIEWER = ""; // e.g. "Dr. Name, MBBS, MD, Reg. No. XXXX"
 
 const signs = [
   {
@@ -35,7 +32,7 @@ const signs = [
   {
     letter: "A",
     title: "Arm Weakness",
-    icon: Armchair,
+    icon: Hand,
     description:
       "Weakness or numbness in one arm is a common stroke symptom. Ask the person to raise both arms and observe any drift.",
   },
@@ -63,7 +60,7 @@ export default function StrokeAwarenessSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-0 lg:mb-1">
-          <span className="inline-block px-4 py-1 rounded-full bg-red-100 text-red-600 text-sm font-semibold">
+          <span className="inline-block px-4 py-1 rounded-full bg-red-100 text-red-700 text-sm font-semibold">
             Stroke Awareness
           </span>
 
@@ -72,9 +69,14 @@ export default function StrokeAwarenessSection() {
           </h2>
 
           <p className="mt-4 max-w-2xl mx-auto text-slate-600">
-            Recognizing stroke symptoms early can save a life.
-            Remember the B.E.F.A.S.T warning signs and seek immediate
-            medical help.
+            Recognizing stroke symptoms early can save a life. Remember the B.E.F.A.S.T warning signs and seek
+            immediate medical help.
+          </p>
+
+          {/* Neutral public-health emergency instruction (not hospital promotion) */}
+          <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-4 py-2 text-sm font-semibold text-red-700 shadow-sm">
+            <PhoneCall className="h-4 w-4" />
+            Suspected stroke? Call 108 / 112 or go to the nearest emergency department immediately.
           </p>
         </div>
 
@@ -90,27 +92,25 @@ export default function StrokeAwarenessSection() {
                     key={item.letter}
                     onMouseEnter={() => setActive(index)}
                     onClick={() => setActive(index)}
-                    className="cursor-pointer group"
+                    onFocus={() => setActive(index)}
+                    tabIndex={0}
+                    role="button"
+                    aria-expanded={isActive}
+                    className="cursor-pointer group outline-none focus-visible:ring-2 focus-visible:ring-red-400 rounded-lg"
                   >
                     {/* Main Row */}
                     <div className="flex items-center gap-6">
-                      {/* Letter */}
                       <span
                         className={`text-5xl md:text-6xl font-black transition-all duration-300 ${
-                          isActive
-                            ? "text-red-500 scale-110"
-                            : "text-slate-300"
+                          isActive ? "text-red-500 scale-110" : "text-slate-300"
                         }`}
                       >
                         {item.letter}
                       </span>
 
-                      {/* Title */}
                       <h3
                         className={`text-2xl md:text-3xl lg:text-4xl font-semibold transition-all duration-300 ${
-                          isActive
-                            ? "text-slate-900 translate-x-2"
-                            : "text-slate-700"
+                          isActive ? "text-slate-900 translate-x-2" : "text-slate-700"
                         }`}
                       >
                         {item.title}
@@ -120,9 +120,7 @@ export default function StrokeAwarenessSection() {
                     {/* Animated Line */}
                     <div
                       className={`ml-[72px] transition-all duration-500 overflow-hidden ${
-                        isActive
-                          ? "max-w-[120px] opacity-100 mt-2"
-                          : "max-w-0 opacity-0"
+                        isActive ? "max-w-[120px] opacity-100 mt-2" : "max-w-0 opacity-0"
                       }`}
                     >
                       <div className="h-[3px] bg-red-500 rounded-full" />
@@ -131,14 +129,10 @@ export default function StrokeAwarenessSection() {
                     {/* Description */}
                     <div
                       className={`overflow-hidden transition-all duration-500 ${
-                        isActive
-                          ? "max-h-32 opacity-100 mt-3"
-                          : "max-h-0 opacity-0"
+                        isActive ? "max-h-32 opacity-100 mt-3" : "max-h-0 opacity-0"
                       }`}
                     >
-                      <p className="ml-[72px] text-slate-500 leading-relaxed max-w-lg">
-                        {item.description}
-                      </p>
+                      <p className="ml-[72px] text-slate-600 leading-relaxed max-w-lg">{item.description}</p>
                     </div>
                   </div>
                 );
@@ -149,69 +143,85 @@ export default function StrokeAwarenessSection() {
           {/* RIGHT SIDE IMAGE */}
           <div className="flex items-center justify-center min-h-[500px] lg:min-h-[750px] lg:pr-6 xl:pr-10 overflow-hidden">
             <div className="relative w-full flex justify-center">
-
               {/* Blue ambient glow */}
               <div
-                className="absolute inset-0 pointer-events-none z-[1] animate-[pulseBlue_3.5s_ease-in-out_infinite]"
-                style={{ background: 'radial-gradient(ellipse at 60% 40%, rgba(30,130,255,0.1) 0%, transparent 65%)' }}
+                className="absolute inset-0 pointer-events-none z-[1] animate-[pulseBlue_3.5s_ease-in-out_infinite] motion-reduce:animate-none"
+                style={{ background: "radial-gradient(ellipse at 60% 40%, rgba(30,130,255,0.1) 0%, transparent 65%)" }}
               />
 
               {/* Red stroke glow */}
               <div
-                className="absolute top-[12%] right-[18%] w-40 h-40 rounded-full pointer-events-none z-[3] animate-[pulseRed_1.8s_ease-in-out_infinite]"
-                style={{ background: 'radial-gradient(circle, rgba(255,60,0,0.5) 0%, rgba(220,30,0,0.2) 50%, transparent 75%)' }}
+                className="absolute top-[12%] right-[18%] w-40 h-40 rounded-full pointer-events-none z-[3] animate-[pulseRed_1.8s_ease-in-out_infinite] motion-reduce:animate-none"
+                style={{ background: "radial-gradient(circle, rgba(255,60,0,0.5) 0%, rgba(220,30,0,0.2) 50%, transparent 75%)" }}
               />
 
-              {/* Ripple rings */}
+              {/* Ripple rings (hidden for visitors who prefer reduced motion) */}
               {[0, 0.75, 1.5].map((delay, i) => (
                 <div
                   key={i}
-                  className="absolute rounded-full pointer-events-none z-[4]"
+                  className="absolute rounded-full pointer-events-none z-[4] motion-reduce:hidden"
                   style={{
-                    top: 'calc(12% + 35px)', right: 'calc(18% + 35px)',
-                    width: 90, height: 90,
-                    border: '1.5px solid rgba(255,70,0,0.7)',
-                    animation: `rippleOut 2.2s ease-out ${delay}s infinite`
+                    top: "calc(12% + 35px)",
+                    right: "calc(18% + 35px)",
+                    width: 90,
+                    height: 90,
+                    border: "1.5px solid rgba(255,70,0,0.7)",
+                    animation: `rippleOut 2.2s ease-out ${delay}s infinite`,
                   }}
                 />
               ))}
 
               {/* Scan line */}
               <div
-                className="absolute left-0 right-0 h-px pointer-events-none z-[6]"
+                className="absolute left-0 right-0 h-px pointer-events-none z-[6] motion-reduce:hidden"
                 style={{
-                  background: 'linear-gradient(90deg, transparent, rgba(0,200,255,0.4), transparent)',
-                  animation: 'scanLine 5s linear infinite'
+                  background: "linear-gradient(90deg, transparent, rgba(0,200,255,0.4), transparent)",
+                  animation: "scanLine 5s linear infinite",
                 }}
               />
 
               {/* Particles */}
               {[
-                { top: '18%', right: '22%', d: '2.2s', dl: '0s', tx: '-15px', ty: '-35px', c: 'rgba(255,90,0,0.9)' },
-                { top: '22%', right: '19%', d: '1.9s', dl: '0.5s', tx: '10px', ty: '-28px', c: 'rgba(255,90,0,0.9)' },
-                { top: '16%', right: '25%', d: '2.6s', dl: '0.9s', tx: '-20px', ty: '-30px', c: 'rgba(255,170,0,0.85)' },
-                { top: '25%', right: '21%', d: '2.0s', dl: '1.3s', tx: '18px', ty: '-22px', c: 'rgba(255,170,0,0.85)' },
-                { top: '20%', right: '28%', d: '2.4s', dl: '0.3s', tx: '-8px', ty: '-40px', c: 'rgba(255,90,0,0.9)' },
+                { top: "18%", right: "22%", d: "2.2s", dl: "0s", tx: "-15px", ty: "-35px", c: "rgba(255,90,0,0.9)" },
+                { top: "22%", right: "19%", d: "1.9s", dl: "0.5s", tx: "10px", ty: "-28px", c: "rgba(255,90,0,0.9)" },
+                { top: "16%", right: "25%", d: "2.6s", dl: "0.9s", tx: "-20px", ty: "-30px", c: "rgba(255,170,0,0.85)" },
+                { top: "25%", right: "21%", d: "2.0s", dl: "1.3s", tx: "18px", ty: "-22px", c: "rgba(255,170,0,0.85)" },
+                { top: "20%", right: "28%", d: "2.4s", dl: "0.3s", tx: "-8px", ty: "-40px", c: "rgba(255,90,0,0.9)" },
               ].map((p, i) => (
                 <div
                   key={i}
-                  className="absolute w-[3px] h-[3px] rounded-full pointer-events-none z-[5]"
-                  style={{
-                    top: p.top, right: p.right, background: p.c,
-                    animation: `floatUp ${p.d} ease-in ${p.dl} infinite`,
-                    '--tx': p.tx, '--ty': p.ty,
-                  } as React.CSSProperties}
+                  className="absolute w-[3px] h-[3px] rounded-full pointer-events-none z-[5] motion-reduce:hidden"
+                  style={
+                    {
+                      top: p.top,
+                      right: p.right,
+                      background: p.c,
+                      animation: `floatUp ${p.d} ease-in ${p.dl} infinite`,
+                      "--tx": p.tx,
+                      "--ty": p.ty,
+                    } as React.CSSProperties
+                  }
                 />
               ))}
 
-              {/* Image with float + glow */}
+              {/* Educational illustration */}
               <img
                 src="/images/stroke.png"
-                alt="Stroke Awareness"
+                alt="Illustration of the human brain highlighting the area affected during a stroke"
+                loading="lazy"
                 className="relative z-10 w-full max-w-[420px] sm:max-w-[520px] lg:max-w-[600px] xl:max-w-[680px] object-contain"
               />
             </div>
           </div>
+        </div>
+
+        {/* Disclaimer */}
+        <div className="mt-8 text-center text-xs text-slate-500 max-w-2xl mx-auto leading-relaxed">
+          <p>
+            This is general health information based on the widely used BE-FAST stroke screening method. It is not a
+            substitute for medical advice, diagnosis or treatment.
+          </p>
+          {REVIEWER && <p className="mt-1">Medically reviewed by: {REVIEWER}</p>}
         </div>
       </div>
     </section>

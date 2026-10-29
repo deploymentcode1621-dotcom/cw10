@@ -1,34 +1,59 @@
 "use client";
-import { Phone, X } from "lucide-react";
+
 import { useState } from "react";
+import { Phone, TriangleAlert, X } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/utils";
+
+// Set to true only after confirming the hospital's emergency number.
+const EMERGENCY_NUMBER_VERIFIED = false;
 
 export default function EmergencyBanner() {
   const [open, setOpen] = useState(true);
+
+  const emergencyNumber = SITE_CONFIG.phone.emergency?.trim();
+
+  const showPhone =
+    EMERGENCY_NUMBER_VERIFIED && Boolean(emergencyNumber);
+
   if (!open) return null;
+
   return (
-    <div className="bg-red-600 text-white py-2 px-4 relative z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-center gap-4 text-sm font-medium">
-        <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-          24/7 Emergency Available
-        </span>
-        <span className="hidden sm:inline text-red-200">|</span>
-        <a
-          href={`tel:${SITE_CONFIG.phone.emergency}`}
-          className="flex items-center gap-1.5 font-bold hover:text-red-200 transition-colors"
-        >
-          <Phone className="w-4 h-4" />
-          Emergency: {SITE_CONFIG.phone.emergency}
-        </a>
+    <aside
+      aria-label="Emergency information"
+      className="relative z-50 border-b border-red-800 bg-red-700 text-white"
+    >
+      <div className="mx-auto flex max-w-7xl items-start gap-3 px-4 py-3 pr-14 sm:items-center sm:justify-center sm:gap-5">
+        <TriangleAlert
+          aria-hidden="true"
+          className="mt-0.5 h-4 w-4 shrink-0 text-red-100 sm:mt-0"
+        />
+
+        <div className="flex flex-col gap-2 text-xs leading-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-5 sm:text-sm">
+          <p>
+            Medical emergency? Seek immediate assistance.
+            Do not wait for an online response.
+          </p>
+
+          {showPhone && emergencyNumber && (
+            <a
+              href={`tel:${emergencyNumber.replace(/[^\d+]/g, "")}`}
+              className="inline-flex w-fit items-center gap-2 rounded-sm font-semibold underline decoration-white/40 underline-offset-4 hover:decoration-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              <Phone aria-hidden="true" className="h-4 w-4" />
+              Hospital emergency: {emergencyNumber}
+            </a>
+          )}
+        </div>
       </div>
+
       <button
+        type="button"
         onClick={() => setOpen(false)}
-        className="absolute right-3 top-1/2 -translate-y-1/2 text-red-200 hover:text-white"
-        aria-label="Close banner"
+        aria-label="Dismiss emergency information"
+        className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-lg text-red-100 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       >
-        <X className="w-4 h-4" />
+        <X aria-hidden="true" className="h-4 w-4" />
       </button>
-    </div>
+    </aside>
   );
 }

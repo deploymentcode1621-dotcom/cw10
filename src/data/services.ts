@@ -1,273 +1,162 @@
 import type { Service } from "@/types";
 
+/**
+ * Editorial draft revised on 2026-10-29; clinical approval is pending.
+ * Basis: NMC notice dated 2026-10-06, sections 7.2, 8.1, 8.3 and 9.1.
+ * Before publication, confirm EACH listed department and feature with the hospital.
+ * Delete services/features that are not actually available; a disclaimer is not verification.
+ * No scanner specification, procedure, specialist roster or 24x7 coverage is verified here.
+ * isEmergency is false to suppress the existing UI's unverified 24x7 badge;
+ * this does NOT mean the service cannot treat emergencies.
+ * Restore that badge only after documented confirmation of continuous coverage.
+ * Images below are neutral illustrations, not photographs of hospital facilities.
+ * AI-assisted draft: retain an appropriate visible source disclosure where required
+ * by section 7.2; this code comment alone is not a public disclosure.
+ * Keep clinical reviewer, approval date and verification evidence in internal records.
+ */
+
+// Self-contained illustration avoids stock photographs and missing image files.
+const serviceIllustration =
+  "data:image/svg+xml," +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"><rect width="600" height="400" fill="#e6f4f1"/><circle cx="300" cy="180" r="85" fill="#c4e4df"/><path d="M285 130h30v35h35v30h-35v35h-30v-35h-35v-30h35z" fill="#176c65"/><text x="300" y="315" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#23534e">Service information</text></svg>',
+  );
+
 export const services: Service[] = [
   {
     id: "neurology",
     title: "Neurology",
     slug: "neurology",
-
-    shortDescription:
-      "Expert diagnosis and treatment for disorders affecting the brain, spinal cord, nerves, and muscles.",
-
-    fullDescription:
-      "Our Neurology Department provides comprehensive diagnosis, treatment, and long-term management of neurological disorders affecting patients of all ages. Our experienced neurologists specialize in treating stroke, epilepsy, migraine, Parkinson's disease, dementia, multiple sclerosis, neuropathy, vertigo, headaches, and various movement disorders. We combine advanced diagnostic technologies with evidence-based treatments to ensure accurate diagnosis and the best possible outcomes. Every patient receives an individualized treatment plan designed according to their medical condition, lifestyle, and recovery goals. Our multidisciplinary team works closely with neurosurgeons, physiotherapists, rehabilitation specialists, and critical care experts to provide complete neurological care under one roof. Whether it is emergency stroke management or long-term neurological rehabilitation, we are committed to delivering compassionate, patient-centered care using the latest medical advancements.",
-
+    shortDescription: "Assessment and management of conditions affecting the brain, spinal cord, nerves and muscles.",
+    fullDescription: "Neurology concerns conditions of the nervous system, including headaches, seizures, movement disorders and peripheral nerve disorders. Assessment may include a medical history, neurological examination and investigations when clinically indicated. Treatment and follow-up depend on the diagnosis and individual clinical needs.",
     icon: "Brain",
-
-    image:
-      "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&h=400&fit=crop",
-
+    image: serviceIllustration,
     features: [
-      "Stroke Diagnosis & Treatment",
-      "EEG & Video EEG Monitoring",
-      "Electromyography (EMG)",
-      "Nerve Conduction Studies (NCS)",
-      "Migraine & Headache Clinic",
-      "Epilepsy Management",
-      "Parkinson's Disease Treatment",
-      "Memory & Dementia Clinic",
-      "Multiple Sclerosis Care",
-      "Peripheral Neuropathy Treatment",
-      "Botox Therapy",
-      "Long-Term Neurological Rehabilitation"
+      "Neurological assessment",
+      "Headache and migraine assessment",
+      "Seizure assessment and follow-up",
+      "Movement disorder assessment",
+      "Peripheral nerve disorder assessment",
     ],
-
     isEmergency: false,
   },
-
   {
     id: "neurosurgery",
     title: "Neurosurgery",
     slug: "neurosurgery",
-
-    shortDescription:
-      "Advanced brain, spine, and nerve surgeries using modern microscopic and minimally invasive techniques.",
-
-    fullDescription:
-      "Our Neurosurgery Department offers advanced surgical treatment for diseases and injuries affecting the brain, spine, and nervous system. Supported by modern operating theatres, high-definition surgical microscopes, neuronavigation systems, and intraoperative neuro-monitoring, our team performs highly specialized procedures with precision and safety. We manage brain tumors, traumatic brain injuries, aneurysms, hydrocephalus, epilepsy, spinal tumors, and complex neurological disorders requiring surgery. Our surgeons work closely with neurologists, anesthesiologists, intensivists, and rehabilitation specialists to ensure seamless care before, during, and after surgery. Every patient benefits from personalized surgical planning, advanced imaging, minimally invasive techniques whenever possible, and comprehensive post-operative rehabilitation for faster recovery and improved quality of life.",
-
+    shortDescription: "Surgical assessment of conditions affecting the brain, spine and peripheral nerves.",
+    fullDescription: "Neurosurgical assessment considers whether a condition affecting the brain, spine or peripheral nerves requires surgical treatment. Investigation findings, non-surgical options, potential benefits, risks and follow-up needs are discussed as part of clinical decision-making. The procedure offered depends on the diagnosis and the hospital’s confirmed facilities and surgical scope.",
     icon: "Stethoscope",
-
-    image:
-      "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&h=400&fit=crop",
-
+    image: serviceIllustration,
     features: [
-      "Brain Tumor Surgery",
-      "Microscopic Brain Surgery",
-      "Aneurysm Clipping",
-      "Hydrocephalus Shunt Surgery",
-      "Epilepsy Surgery",
-      "Deep Brain Stimulation (DBS)",
-      "Pituitary Tumor Surgery",
-      "Skull Base Surgery",
-      "Spinal Tumor Surgery",
-      "Traumatic Brain Injury Surgery",
-      "Neuronavigation Technology",
-      "Minimally Invasive Neurosurgery"
+      "Brain condition assessment",
+      "Spinal condition assessment",
+      "Head injury assessment",
+      "Review of investigation findings",
+      "Discussion of surgical and non-surgical options",
     ],
-
     isEmergency: false,
   },
-
   {
     id: "spine-surgery",
     title: "Spine Surgery",
     slug: "spine-surgery",
-
-    shortDescription:
-      "Comprehensive surgical care for spinal disorders using minimally invasive and advanced spinal procedures.",
-
-    fullDescription:
-      "Our Spine Surgery Department specializes in diagnosing and treating disorders affecting the cervical, thoracic, and lumbar spine. We provide both conservative and surgical management for slipped discs, spinal stenosis, fractures, scoliosis, spinal infections, tumors, and degenerative spine diseases. Whenever possible, minimally invasive techniques are used to reduce pain, minimize blood loss, shorten hospital stays, and promote faster recovery. Our multidisciplinary spine team includes neurosurgeons, orthopedic spine surgeons, physiotherapists, pain specialists, and rehabilitation experts who work together to restore mobility and improve quality of life. Every patient undergoes comprehensive evaluation, advanced imaging, and personalized treatment planning before surgery to achieve the best long-term outcomes.",
-
+    shortDescription: "Assessment of spinal conditions and discussion of non-surgical and surgical treatment options.",
+    fullDescription: "Spine care concerns conditions affecting the neck and back, including disc disorders, spinal narrowing and spinal injuries. Assessment may include examination and imaging when indicated. Management may involve non-surgical treatment or surgery according to the diagnosis. The treating clinician explains the proposed treatment, alternatives, risks and follow-up requirements.",
     icon: "Activity",
-
-    image:
-      "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=600&h=400&fit=crop",
-
+    image: serviceIllustration,
     features: [
-      "Microdiscectomy",
-      "Lumbar Fusion Surgery",
-      "Cervical Disc Replacement",
-      "Spinal Decompression",
-      "Spinal Fusion",
-      "Scoliosis Correction",
-      "Minimally Invasive Spine Surgery",
-      "Spinal Trauma Surgery",
-      "Spinal Tumor Surgery",
-      "Vertebroplasty & Kyphoplasty",
-      "Spinal Cord Injury Management",
-      "Post-Surgical Rehabilitation"
+      "Neck and back assessment",
+      "Disc disorder assessment",
+      "Spinal narrowing assessment",
+      "Spinal injury assessment",
+      "Treatment planning and follow-up",
     ],
-
     isEmergency: false,
   },
-    {
+  {
     id: "trauma-care",
     title: "Trauma Care",
     slug: "trauma-care",
-
-    shortDescription:
-      "24/7 emergency trauma care for road accidents, head injuries, fractures, spinal injuries, and life-threatening emergencies.",
-
-    fullDescription:
-      "Our Trauma Care Department is fully equipped to manage all types of medical and surgical emergencies with speed, precision, and compassion. As one of the leading trauma centers in the region, we provide immediate treatment for road traffic accidents, head injuries, spinal cord injuries, fractures, multiple organ trauma, and other critical emergencies. Our emergency team follows internationally recognized trauma protocols to ensure rapid assessment, stabilization, and life-saving interventions. Advanced imaging, emergency operating theatres, intensive care units, blood bank support, and multidisciplinary specialists are available around the clock. Every trauma patient receives coordinated care from emergency physicians, neurosurgeons, orthopedic surgeons, anesthesiologists, and critical care specialists, ensuring the highest standard of treatment and faster recovery.",
-
+    shortDescription: "Assessment and initial management of injuries, including head and spinal injuries.",
+    fullDescription: "Trauma care involves assessing injuries and determining the need for stabilisation, investigations, treatment or referral. Care depends on the nature and severity of the injury and the staff and facilities available. Transfer to another centre may be required when the necessary care is outside the hospital’s available scope.",
     icon: "Ambulance",
-
-    image:
-      "https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=600&h=400&fit=crop",
-
+    image: serviceIllustration,
     features: [
-      "24×7 Trauma Center",
-      "Advanced Trauma Life Support (ATLS)",
-      "Emergency Head Injury Management",
-      "Polytrauma Treatment",
-      "Road Traffic Accident Care",
-      "Emergency Spine Injury Care",
-      "Fracture Stabilization",
-      "Emergency Trauma Surgery",
-      "Critical Care Support",
-      "Blood Bank Services",
-      "Rapid CT & MRI Access",
-      "Dedicated Trauma Team"
+      "Injury assessment",
+      "Head injury assessment",
+      "Spinal injury assessment",
+      "Initial stabilisation",
+      "Referral and transfer planning",
     ],
-
-    isEmergency: true,
+    isEmergency: false,
   },
-
   {
     id: "emergency-care",
     title: "Emergency Care",
     slug: "emergency-care",
-
-    shortDescription:
-      "Round-the-clock emergency medical services with rapid diagnosis, stabilization, and specialist support.",
-
-    fullDescription:
-      "Our Emergency Department operates 24 hours a day, seven days a week, delivering immediate medical attention for all emergency conditions. The department is staffed by experienced emergency physicians, nurses, and specialists trained to manage critical illnesses and injuries. Equipped with advanced resuscitation bays, cardiac monitoring systems, ventilators, emergency imaging facilities, and laboratory support, we ensure prompt diagnosis and treatment. From chest pain and stroke to poisoning, trauma, seizures, breathing difficulties, and pediatric emergencies, our team responds quickly to minimize complications and improve patient outcomes. Emergency patients also benefit from immediate access to neurology, neurosurgery, orthopedics, intensive care, radiology, and laboratory services without unnecessary delays.",
-
+    shortDescription: "Assessment and initial management of urgent illness and injury.",
+    fullDescription: "Emergency care involves assessing urgent illness or injury and determining the need for stabilisation, investigations, admission or referral. Treatment depends on clinical urgency and available resources. This page does not confirm round-the-clock staffing or availability of a particular specialist. In an emergency, seek immediate medical assistance; do not wait for a website enquiry response.",
     icon: "AlertCircle",
-
-    image:
-      "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=600&h=400&fit=crop",
-
+    image: serviceIllustration,
     features: [
-      "24×7 Emergency Department",
-      "Emergency Physician Team",
-      "Rapid Patient Triage",
-      "Advanced Cardiac Life Support",
-      "Stroke Code Activation",
-      "Seizure & Neurological Emergencies",
-      "Poisoning Management",
-      "Pediatric Emergency Care",
-      "Emergency Ventilator Support",
-      "Critical Care Stabilization",
-      "Emergency Imaging Services",
-      "Ambulance Coordination"
+      "Urgency assessment and triage",
+      "Initial clinical assessment",
+      "Stabilisation when indicated",
+      "Admission assessment",
+      "Referral and transfer planning",
     ],
-
-    isEmergency: true,
+    isEmergency: false,
   },
-
   {
     id: "icu-care",
     title: "ICU Care",
     slug: "icu-care",
-
-    shortDescription:
-      "Advanced Neuro ICU and Critical Care Unit with 24/7 intensivists, ventilators, and continuous patient monitoring.",
-
-    fullDescription:
-      "Our Intensive Care Unit (ICU) provides comprehensive critical care for patients with life-threatening medical and neurological conditions. The ICU is equipped with modern ventilators, bedside monitoring systems, infusion pumps, continuous EEG monitoring, invasive hemodynamic monitoring, and advanced life-support equipment. Our dedicated intensivists, neurologists, neurosurgeons, nurses, respiratory therapists, and rehabilitation specialists work together around the clock to provide personalized critical care. We manage stroke patients, severe infections, traumatic brain injuries, post-operative neurosurgical cases, respiratory failure, septic shock, and multi-organ dysfunction with evidence-based treatment protocols. Every patient receives continuous monitoring and multidisciplinary care focused on improving survival, reducing complications, and supporting long-term recovery.",
-
+    shortDescription: "Monitoring and treatment of patients who require intensive care.",
+    fullDescription: "Intensive care involves monitoring and treatment for patients with critical illness or those requiring observation after a procedure. Admission and treatment depend on clinical assessment, bed availability, staffing and available equipment. The treating team discusses the care plan and relevant risks with the patient or an authorised representative as appropriate.",
     icon: "Heart",
-
-    image:
-      "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&h=400&fit=crop",
-
+    image: serviceIllustration,
     features: [
-      "24×7 Neuro ICU",
-      "Critical Care Specialists",
-      "Advanced Mechanical Ventilation",
-      "Continuous EEG Monitoring",
-      "Invasive Hemodynamic Monitoring",
-      "ICP Monitoring",
-      "Stroke Intensive Care",
-      "Post Neurosurgery ICU",
-      "Sepsis Management",
-      "Multi-Organ Support",
-      "Respiratory Therapy",
-      "Family-Centered Critical Care"
+      "Assessment for intensive care admission",
+      "Patient monitoring",
+      "Review of treatment needs",
+      "Communication about the care plan",
+      "Transfer or discharge planning",
     ],
-
-    isEmergency: true,
+    isEmergency: false,
   },
-    {
+  {
     id: "ct-scan",
     title: "CT Scan",
     slug: "ct-scan",
-
-    shortDescription:
-      "High-speed CT imaging for accurate diagnosis of neurological, orthopedic, and emergency conditions.",
-
-    fullDescription:
-      "Our CT Scan Department is equipped with advanced multi-slice CT technology that provides fast, detailed, and highly accurate diagnostic imaging. CT scanning plays a vital role in the rapid diagnosis of stroke, brain hemorrhage, traumatic injuries, fractures, chest diseases, abdominal disorders, and vascular conditions. Our experienced radiologists and technicians ensure every scan is performed with precision while maintaining patient comfort and safety. Emergency patients benefit from immediate imaging and rapid reporting, allowing doctors to make timely treatment decisions. We follow international radiation safety standards while delivering exceptional image quality for accurate diagnosis and treatment planning.",
-
+    shortDescription: "Computed tomography imaging when requested for clinical assessment.",
+    fullDescription: "Computed tomography (CT) uses X-rays to produce cross-sectional images. The area examined and scanning protocol depend on the clinical request. Contrast may be used when indicated after assessment by the clinical team. Patients should inform the team about possible pregnancy, previous contrast reactions and relevant medical conditions. Available examinations and timings must be confirmed with the hospital.",
     icon: "Scan",
-
-    image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
-
+    image: serviceIllustration,
     features: [
-      "128-Slice CT Scanner",
-      "Brain CT Scan",
-      "Whole Body CT",
-      "CT Angiography",
-      "Stroke Protocol CT",
-      "Spine CT Imaging",
-      "Trauma CT Scan",
-      "Chest CT",
-      "Abdominal CT",
-      "Contrast CT Studies",
-      "Rapid Emergency Reporting",
-      "24×7 Imaging Services"
+      "Review of the imaging request",
+      "Preparation information",
+      "Assessment before contrast, when indicated",
+      "CT image acquisition",
+      "Radiology report",
     ],
-
     isEmergency: false,
   },
-
   {
     id: "mri-scan",
     title: "MRI Scan",
     slug: "mri-scan",
-
-    shortDescription:
-      "Advanced MRI imaging with high-resolution scans for brain, spine, joints, and internal organs.",
-
-    fullDescription:
-      "Our MRI Department offers advanced magnetic resonance imaging for the diagnosis of neurological, musculoskeletal, and internal organ disorders. MRI provides exceptional soft tissue visualization without radiation exposure, making it one of the most effective diagnostic tools available. Our experienced radiologists perform specialized brain MRI, spine MRI, MR angiography, diffusion imaging, and functional MRI studies to detect tumors, stroke, spinal disorders, ligament injuries, infections, and vascular diseases. Every examination is performed using modern imaging protocols to ensure precise diagnosis while maximizing patient comfort. Reports are prepared promptly to support timely treatment planning by our specialists.",
-
+    shortDescription: "Magnetic resonance imaging when requested for clinical assessment.",
+    fullDescription: "Magnetic resonance imaging (MRI) uses a magnetic field and radio waves to produce images and does not use ionising radiation. Suitability depends on safety screening, including information about implants, devices and metallic foreign bodies. Contrast may be used when clinically indicated. Patients should inform the team about possible pregnancy, kidney conditions or previous contrast reactions. Available examinations and timings must be confirmed with the hospital.",
     icon: "Zap",
-
-    image:
-      "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop",
-
+    image: serviceIllustration,
     features: [
-      "3 Tesla MRI",
-      "Brain MRI",
-      "Spine MRI",
-      "Functional MRI (fMRI)",
-      "MR Angiography",
-      "MR Spectroscopy",
-      "Diffusion Tensor Imaging",
-      "Joint MRI",
-      "Whole Spine MRI",
-      "Tumor Imaging",
-      "Stroke MRI Protocol",
-      "High-Resolution Neuro Imaging"
+      "Review of the imaging request",
+      "Implant and device safety screening",
+      "Preparation information",
+      "MRI image acquisition",
+      "Radiology report",
     ],
-
     isEmergency: false,
   },
 ];

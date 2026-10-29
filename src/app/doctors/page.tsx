@@ -2,470 +2,572 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Calendar,
-  Clock,
-  Award,
-  Brain,
+  ArrowRight,
+  CalendarDays,
+  ChevronDown,
+  ClipboardList,
+  GraduationCap,
+  MapPin,
+  MessageSquare,
+  Stethoscope,
+  UserRound,
 } from "lucide-react";
 
 import { doctors } from "@/data/doctors";
-import CTASection from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
-  title: "Our Doctors",
+  title: "Doctor Directory | Ashwini Neuro Care",
   description:
-    "Meet the expert medical team at Ashwini Neuro Care Center.",
+    "Doctor profiles, qualifications, clinical specialties and consultation information at Ashwini Neuro Care, Latur.",
 };
 
-const expertise = [
+type DirectoryDoctor = (typeof doctors)[number] & {
+  registrationNumber?: string;
+  registrationCouncil?: string;
+};
+
+const visitSteps = [
   {
-    title: "Stroke Treatment",
+    icon: CalendarDays,
+    title: "Confirm Your Visit",
     description:
-      "Advanced diagnosis, emergency stroke management and rehabilitation.",
+      "Contact the hospital for doctor availability, consultation timings and current fees.",
+    color: "bg-teal-50 text-teal-800",
   },
   {
-    title: "Brain Surgery",
+    icon: ClipboardList,
+    title: "Bring Your Records",
     description:
-      "Complex cranial surgeries using modern neurosurgical techniques.",
+      "Bring relevant reports, prescriptions and a list of current medicines, if available.",
+    color: "bg-blue-50 text-blue-800",
   },
   {
-    title: "Spine Surgery",
+    icon: MessageSquare,
+    title: "Discuss Your Questions",
     description:
-      "Minimally invasive and advanced spinal procedures.",
-  },
-  {
-    title: "Epilepsy Care",
-    description:
-      "Comprehensive seizure evaluation and treatment.",
-  },
-  {
-    title: "Migraine & Headache",
-    description:
-      "Personalized treatment for chronic headaches and migraines.",
-  },
-  {
-    title: "Vertigo",
-    description:
-      "Accurate diagnosis and treatment of dizziness disorders.",
-  },
-  {
-    title: "Neuro Trauma",
-    description:
-      "Emergency care for brain and spinal injuries.",
-  },
-  {
-    title: "Critical Care",
-    description:
-      "Specialized neuro-critical care and ICU support.",
+      "Ask about proposed care, alternatives, potential benefits, risks and follow-up.",
+    color: "bg-violet-50 text-violet-800",
   },
 ];
+
+const questions = [
+  {
+    title: "How can I enquire about an appointment?",
+    answer:
+      "Use the appointment enquiry page or contact the hospital. Confirm the consultation date and time directly with the hospital. Submitting an enquiry does not confirm an appointment.",
+  },
+  {
+    title: "What should I bring to my consultation?",
+    answer:
+      "Bring relevant medical reports, previous prescriptions and a list of medicines you currently take. Ask the hospital whether any additional documents are required.",
+  },
+  {
+    title: "Where can I confirm fees and consultation timings?",
+    answer:
+      "Contact the hospital for the current consultation fee, doctor availability and timings before planning your visit.",
+  },
+  {
+    title: "Should I use an online enquiry in an emergency?",
+    answer:
+      "Do not wait for an online response in an emergency. Seek immediate medical assistance.",
+  },
+];
+
+const focusClass =
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700";
+
 export default function DoctorsPage() {
+  const directory: DirectoryDoctor[] = [...doctors].sort((a, b) => {
+    const firstDoctorId = "dr-sudhir-fattepurkar";
+
+    return (
+      Number(b.id === firstDoctorId) -
+      Number(a.id === firstDoctorId)
+    );
+  });
+
   return (
-    <div>
-     <section className="relative overflow-hidden min-h-[720px] md:h-[95vh] flex items-center">
+    <main className="overflow-hidden bg-white text-slate-900">
+      {/* ORIGINAL PHOTO HERO */}
+      <section className="relative isolate flex min-h-[660px] items-center overflow-hidden bg-slate-950 py-20 md:min-h-[740px]">
+        <Image
+          src="/images/doctors.jpeg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
 
-  {/* Background Image */}
-  <Image
-    src="/images/doctors.jpeg"
-    alt="Ashwini Neuro Care Center Doctors"
-    fill
-    priority
-    className="object-cover object-center scale-105"
-  />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-black/55"
+        />
 
-  {/* Overlay */}
-  <div className="absolute inset-0 bg-black/55" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-[#032d35]/90"
+        />
 
-  {/* Gradient */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60" />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-4 rounded-[2rem] border border-white/15 sm:inset-6"
+        />
 
-  {/* Content */}
-  <div className="relative z-10 w-full">
-    <div className="max-w-6xl mx-auto px-5 md:px-6 text-center">
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-6 text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-2.5 text-xs font-medium text-white backdrop-blur-md sm:text-sm">
+            <MapPin
+              aria-hidden="true"
+              className="h-4 w-4 text-teal-200"
+            />
+            Doctor Directory · Latur, Maharashtra
+          </span>
 
-      {/* Badge */}
-      <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 backdrop-blur-xl px-4 py-2 md:px-6 md:py-3 text-xs md:text-sm font-medium text-white mb-6 md:mb-8">
-        Trusted Neurology & Neurosurgery Specialists
-      </span>
+          <h1 className="mx-auto mt-7 max-w-5xl text-4xl font-bold leading-[1.12] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            Meet Our Doctors
+            <span className="mt-3 block text-teal-200">
+              Ashwini Neuro Care Center
+            </span>
+          </h1>
 
-      {/* Heading */}
-      <h1
-        className="
-          mx-auto
-          max-w-5xl
-          text-4xl
-          sm:text-5xl
-          md:text-7xl
-          font-black
-          leading-[1.1]
-          tracking-tight
-          text-white
-          drop-shadow-[0_5px_25px_rgba(0,0,0,0.6)]
-        "
-      >
-        Meet The Experts Behind
-
-        <span className="block mt-2 text-teal-200">
-          Ashwini Neuro Care Center
-        </span>
-      </h1>
-
-      {/* Description */}
-      <p
-        className="
-          mt-6
-          md:mt-8
-          mx-auto
-          max-w-3xl
-          text-base
-          md:text-xl
-          leading-7
-          md:leading-9
-          text-gray-100
-        "
-      >
-        Serving Latur and surrounding regions with advanced
-        neurology, neurosurgery, stroke management,
-        trauma care and critical care services.
-      </p>
-
-      {/* Stats */}
-      <div className="mt-10 md:mt-16 grid grid-cols-2 md:flex md:flex-wrap justify-center gap-4 md:gap-8 max-w-xl mx-auto md:max-w-none">
-
-        <div className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl py-5 px-4 md:w-44 shadow-2xl">
-          <h3 className="text-3xl md:text-5xl font-bold text-white">
-            14+
-          </h3>
-
-          <p className="mt-2 text-xs md:text-sm text-gray-200">
-            Years Experience
+          <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-slate-100 sm:text-lg">
+            Information about our doctors, their qualifications and
+            clinical specialties to help you plan your consultation.
           </p>
-        </div>
 
-        <div className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl py-5 px-4 md:w-44 shadow-2xl">
-          <h3 className="text-3xl md:text-5xl font-bold text-white">
-            24/7
-          </h3>
-
-          <p className="mt-2 text-xs md:text-sm text-gray-200">
-            Emergency Care
-          </p>
-        </div>
-
-        <div className="col-span-2 md:col-span-1 rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl py-5 px-4 md:w-44 shadow-2xl">
-          <h3 className="text-3xl md:text-5xl font-bold text-white">
-            5000+
-          </h3>
-
-          <p className="mt-2 text-xs md:text-sm text-gray-200">
-            Patients Treated
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
-      {/* Doctors */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {[doctors[1], doctors[0]].map((doctor, index) => (
-            <div
-              key={doctor.id}
-              className={`grid lg:grid-cols-2 gap-12 items-center ${
-                index !== doctors.length - 1 ? "mb-32" : ""
-              }`}
+          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
+            <a
+              href="#doctor-directory"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-teal-200 px-6 py-3.5 text-sm font-semibold text-teal-950 transition-colors hover:bg-teal-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
-              <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                <Image
-                  src={doctor.image}
-                  alt={doctor.name}
-                  width={600}
-                  height={700}
-                  className="rounded-3xl shadow-2xl w-full h-[500px] object-cover"
+              View Doctor Profiles
+              <ArrowRight
+                aria-hidden="true"
+                className="h-4 w-4"
+              />
+            </a>
+
+            <Link
+              href="/appointment"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/35 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              <CalendarDays
+                aria-hidden="true"
+                className="h-4 w-4"
+              />
+              Appointment Enquiry
+            </Link>
+          </div>
+
+          {/* Informational panels instead of promotional statistics */}
+          <div className="mx-auto mt-12 grid max-w-3xl gap-3 sm:grid-cols-3">
+            {[
+              {
+                icon: Stethoscope,
+                title: "Doctor Profiles",
+                text: "Qualifications & specialties",
+              },
+              {
+                icon: ClipboardList,
+                title: "Visit Preparation",
+                text: "Reports & consultation information",
+              },
+              {
+                icon: MessageSquare,
+                title: "Contact Information",
+                text: "Timings & appointment enquiries",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-white/20 bg-white/10 px-4 py-5 backdrop-blur-md"
+              >
+                <item.icon
+                  aria-hidden="true"
+                  className="mx-auto mb-3 h-5 w-5 text-teal-200"
                 />
+
+                <p className="text-sm font-semibold text-white">
+                  {item.title}
+                </p>
+
+                <p className="mt-2 text-xs leading-5 text-slate-200">
+                  {item.text}
+                </p>
               </div>
-
-              <div>
-                <span className="inline-flex px-4 py-2 rounded-full bg-teal-100 text-teal-700 font-semibold text-sm mb-4">
-                  {doctor.specialization}
-                </span>
-
-                <h2 className="text-4xl font-bold text-gray-900 mb-2">
-                  {doctor.name}
-                </h2>
-
-                <p className="text-xl text-teal-600 font-semibold mb-4">
-                  {doctor.designation}
-                </p>
-
-                <p className="text-gray-500 mb-6">
-                  {doctor.qualification}
-                </p>
-
-                <p className="text-gray-700 leading-relaxed mb-8">
-                  {doctor.bio}
-                </p>
-                {doctor.name === "Dr. Sudhir Fattepurkar" && (
-  <div className="bg-teal-50 border border-teal-100 rounded-3xl p-6 mb-8">
-    <h3 className="font-bold text-teal-700 mb-4">
-      Key Areas of Expertise
-    </h3>
-
-    <div className="grid grid-cols-2 gap-3 text-sm">
-      <div>✓ Brain Tumor Surgery</div>
-      <div>✓ Spine Surgery</div>
-      <div>✓ Neuro Trauma Care</div>
-      <div>✓ Stroke Management</div>
-      <div>✓ Emergency Neurosurgery</div>
-      <div>✓ Critical Neuro Care</div>
-    </div>
-  </div>
-)}
-
-               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
-
-  <div className="bg-gray-50 rounded-2xl p-4">
-    <h4 className="font-semibold text-xs sm:text-sm">
-      Experience
-    </h4>
-
-    <p className="text-teal-600 font-bold text-base sm:text-lg mt-2">
-      {doctor.experience}+ Years
-    </p>
-  </div>
-
-  <div className="bg-gray-50 rounded-2xl p-4 col-span-2 sm:col-span-1">
-    <h4 className="font-semibold text-xs sm:text-sm">
-      Specialty
-    </h4>
-
-    <p className="text-teal-600 font-bold text-sm sm:text-lg mt-2 break-words leading-tight">
-      {doctor.specialization}
-    </p>
-  </div>
-
-  <div className="bg-gray-50 rounded-2xl p-4">
-    <h4 className="font-semibold text-xs sm:text-sm">
-      Availability
-    </h4>
-
-    <p className="text-teal-600 font-bold text-base sm:text-lg mt-2">
-      Mon - Sat
-    </p>
-  </div>
-
-</div>
-                <Link
-                  href="/appointment"
-                  className="btn-primary"
-                >
-                  <Calendar className="w-4 h-4" />
-                  Book Appointment
-                </Link>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
-            {/* Expertise */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Areas of Expertise
+
+      {/* DOCTOR CARDS — SCREENSHOT STYLE */}
+      <section
+        id="doctor-directory"
+        aria-labelledby="directory-heading"
+        className="scroll-mt-28 bg-slate-50 py-16 sm:py-20"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-800">
+                Our Doctors
+              </p>
+
+              <h2
+                id="directory-heading"
+                className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl"
+              >
+                Profiles &amp; Qualifications
+              </h2>
+
+              <div
+                aria-hidden="true"
+                className="mt-5 h-1 w-14 rounded-full bg-teal-600"
+              />
+            </div>
+
+            <Link
+              href="/services"
+              className={`inline-flex items-center gap-2 rounded-md text-sm font-semibold text-teal-800 ${focusClass}`}
+            >
+              Departments &amp; Services
+              <ArrowRight
+                aria-hidden="true"
+                className="h-4 w-4"
+              />
+            </Link>
+          </div>
+
+          <div className="space-y-10 sm:space-y-12">
+            {directory.map((doctor, index) => (
+              <article
+                key={doctor.id}
+                id={doctor.id}
+                className="scroll-mt-28 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm"
+              >
+                <div className="grid lg:grid-cols-5">
+                  {/* Natural-size photo panel */}
+                  <div
+                    className={`bg-gradient-to-br from-teal-50 to-slate-100 p-6 sm:p-7 lg:col-span-2 ${
+                      index % 2 === 1 ? "lg:order-2" : ""
+                    }`}
+                  >
+                    <div className="overflow-hidden rounded-2xl border border-white/80 bg-white">
+                      {doctor.image ? (
+                        <Image
+                          src={doctor.image}
+                          alt={`Portrait of ${doctor.name}`}
+                          width={700}
+                          height={500}
+                          sizes="(max-width: 1023px) 100vw, 40vw"
+                          className="h-auto max-h-[460px] w-full object-contain"
+                        />
+                      ) : (
+                        <div className="flex aspect-[3/2] items-center justify-center bg-slate-100">
+                          <UserRound
+                            aria-hidden="true"
+                            className="h-20 w-20 text-slate-400"
+                          />
+                        </div>
+                      )}
+                    </div>
+
+                    <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-teal-800">
+                      {doctor.specialization}
+                    </p>
+
+                    <p className="mt-2 text-sm text-slate-600">
+                      Ashwini Neuro Care · Latur
+                    </p>
+                  </div>
+
+                  {/* Profile information */}
+                  <div className="flex flex-col p-6 sm:p-8 lg:col-span-3 lg:p-10">
+                    <div className="flex items-center gap-3">
+                      <span
+                        aria-hidden="true"
+                        className="h-px w-8 bg-teal-600"
+                      />
+
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-800">
+                        Doctor Profile
+                      </p>
+                    </div>
+
+                    <h3 className="mt-5 break-words text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl xl:text-4xl">
+                      {doctor.name}
+                    </h3>
+
+                    {doctor.designation && (
+                      <p className="mt-3 text-base font-medium text-teal-800 sm:text-lg">
+                        {doctor.designation}
+                      </p>
+                    )}
+
+                    <dl className="mt-7 grid gap-4 sm:grid-cols-2">
+                      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:col-span-2">
+                        <dt className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-slate-500">
+                          <GraduationCap
+                            aria-hidden="true"
+                            className="h-4 w-4 text-teal-800"
+                          />
+                          Qualifications
+                        </dt>
+
+                        <dd className="mt-3 font-semibold leading-7 text-slate-800">
+                          {doctor.qualification}
+                        </dd>
+                      </div>
+
+                      {doctor.registrationNumber && (
+                        <div className="rounded-2xl border border-slate-200 p-5">
+                          <dt className="text-xs font-medium uppercase tracking-wider text-slate-500">
+                            Registration Number
+                          </dt>
+
+                          <dd className="mt-3 break-words text-sm font-semibold text-slate-800">
+                            {doctor.registrationNumber}
+                          </dd>
+                        </div>
+                      )}
+
+                      {doctor.registrationCouncil && (
+                        <div className="rounded-2xl border border-slate-200 p-5">
+                          <dt className="text-xs font-medium uppercase tracking-wider text-slate-500">
+                            Medical Council
+                          </dt>
+
+                          <dd className="mt-3 text-sm font-semibold leading-6 text-slate-800">
+                            {doctor.registrationCouncil}
+                          </dd>
+                        </div>
+                      )}
+                    </dl>
+
+                    {doctor.bio && (
+                      <div className="mt-7">
+                        <h4 className="text-sm font-semibold text-slate-900">
+                          Clinical Profile
+                        </h4>
+
+                        <p className="mt-3 text-sm leading-8 text-slate-600 sm:text-base">
+                          {doctor.bio}
+                        </p>
+                      </div>
+                    )}
+
+                    <div className="mt-auto pt-8">
+                      <div className="mb-6 flex items-start gap-3 border-t border-slate-100 pt-5">
+                        <CalendarDays
+                          aria-hidden="true"
+                          className="mt-1 h-4 w-4 shrink-0 text-teal-800"
+                        />
+
+                        <p className="text-sm leading-7 text-slate-600">
+                          Contact the hospital to confirm consultation
+                          timings and appointment availability.
+                        </p>
+                      </div>
+
+                      <Link
+                        href="/appointment"
+                        aria-label={`Appointment enquiry for ${doctor.name}`}
+                        className={`inline-flex w-full items-center justify-center gap-2 rounded-xl bg-teal-700 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-teal-800 sm:w-auto ${focusClass}`}
+                      >
+                        <CalendarDays
+                          aria-hidden="true"
+                          className="h-4 w-4"
+                        />
+                        Appointment Enquiry
+                        <ArrowRight
+                          aria-hidden="true"
+                          className="h-4 w-4"
+                        />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONSULTATION TIMELINE */}
+      <section
+        aria-labelledby="visit-heading"
+        className="bg-white py-16 sm:py-24"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-800">
+              Before Your Visit
+            </p>
+
+            <h2
+              id="visit-heading"
+              className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl"
+            >
+              Preparing for Your Consultation
             </h2>
 
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Comprehensive neurological and neurosurgical care under one roof.
+            <p className="mt-4 leading-7 text-slate-600">
+              Practical information for a planned hospital visit.
             </p>
           </div>
 
-         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-  {expertise.map((item) => (
-    <div
-      key={item.title}
-      className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-    >
-      <Brain className="w-10 h-10 text-teal-600 mb-5" />
+          <div className="relative">
+            <div
+              aria-hidden="true"
+              className="absolute left-[16%] right-[16%] top-9 hidden border-t border-dashed border-teal-200 md:block"
+            />
 
-      <h3 className="text-xl font-bold text-gray-900 mb-3">
-        {item.title}
-      </h3>
+            <ol className="relative grid gap-8 md:grid-cols-3">
+              {visitSteps.map((step, index) => (
+                <li key={step.title} className="text-center">
+                  <div
+                    className={`relative mx-auto flex h-[72px] w-[72px] items-center justify-center rounded-2xl ring-8 ring-white ${step.color}`}
+                  >
+                    <step.icon
+                      aria-hidden="true"
+                      className="h-7 w-7"
+                    />
 
-      <p className="text-gray-600 leading-relaxed">
-        {item.description}
-      </p>
-    </div>
-  ))}
-</div>
+                    <span
+                      aria-hidden="true"
+                      className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-[#073b46] text-[10px] font-bold text-white"
+                    >
+                      {index + 1}
+                    </span>
+                  </div>
+
+                  <div className="mt-7 rounded-2xl border border-slate-200 p-6">
+                    <h3 className="text-lg font-bold">
+                      {step.title}
+                    </h3>
+
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                      {step.description}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
-      {/* <section className="py-20 bg-white">
-  <div className="max-w-6xl mx-auto px-4">
 
-    <div className="text-center mb-14">
-      <h2 className="text-4xl font-bold text-gray-900 mb-4">
-        Why Patients Trust Us
-      </h2>
+      {/* QUESTIONS */}
+      <section
+        aria-labelledby="questions-heading"
+        className="border-y border-slate-200 bg-slate-50 py-16 sm:py-20"
+      >
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-5 lg:gap-16 lg:px-8">
+          <div className="lg:col-span-2">
+            <div className="mb-5 inline-flex rounded-2xl bg-teal-100 p-4 text-teal-800">
+              <MessageSquare
+                aria-hidden="true"
+                className="h-7 w-7"
+              />
+            </div>
 
-      <p className="text-gray-600 max-w-2xl mx-auto">
-        Combining experience, technology and compassionate care for
-        neurological and neurosurgical excellence.
-      </p>
-    </div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-800">
+              Visit Information
+            </p>
 
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <h2
+              id="questions-heading"
+              className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl"
+            >
+              Common Questions
+            </h2>
 
-      <div className="bg-teal-50 rounded-3xl p-8">
-        <h3 className="font-bold text-lg mb-2">
-          14+ Years Experience
-        </h3>
-        <p className="text-gray-600">
-          Dedicated neurological and neurosurgical care.
+            <p className="mt-5 leading-7 text-slate-600">
+              For individual consultation arrangements or additional
+              information, contact the hospital.
+            </p>
+
+            <Link
+              href="/contact"
+              className={`mt-6 inline-flex items-center gap-2 rounded-md text-sm font-semibold text-teal-800 ${focusClass}`}
+            >
+              Contact Information
+              <ArrowRight
+                aria-hidden="true"
+                className="h-4 w-4"
+              />
+            </Link>
+          </div>
+
+          <div className="space-y-4 lg:col-span-3">
+            {questions.map((question) => (
+              <details
+                key={question.title}
+                className="group overflow-hidden rounded-2xl border border-slate-200 bg-white open:border-teal-200"
+              >
+                <summary
+                  className={`flex cursor-pointer list-none items-center justify-between gap-5 px-6 py-5 text-sm font-semibold leading-6 [&::-webkit-details-marker]:hidden ${focusClass}`}
+                >
+                  {question.title}
+
+                  <ChevronDown
+                    aria-hidden="true"
+                    className="h-5 w-5 shrink-0 text-teal-800 transition-transform group-open:rotate-180 motion-reduce:transition-none"
+                  />
+                </summary>
+
+                <p className="border-t border-slate-100 px-6 py-5 text-sm leading-7 text-slate-600">
+                  {question.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT PANEL */}
+      <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-[#073b46] p-8 sm:p-12">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full border-[35px] border-white/5"
+          />
+
+          <div className="relative flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-200">
+                Consultation Enquiries
+              </p>
+
+              <h2 className="mt-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                Plan Your Hospital Visit
+              </h2>
+
+              <p className="mt-4 leading-7 text-teal-100">
+                Contact the hospital for doctor availability,
+                consultation timings, location details and current fees.
+              </p>
+            </div>
+
+            <Link
+              href="/contact"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-teal-950 transition-colors hover:bg-teal-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              Contact the Hospital
+              <ArrowRight
+                aria-hidden="true"
+                className="h-4 w-4"
+              />
+            </Link>
+          </div>
+        </div>
+
+        <p className="mx-auto mt-7 max-w-3xl text-center text-xs leading-6 text-slate-600">
+          Website information does not replace an individual medical
+          consultation. In an emergency, seek immediate medical
+          assistance rather than waiting for an online response.
         </p>
-      </div>
-
-      <div className="bg-teal-50 rounded-3xl p-8">
-        <h3 className="font-bold text-lg mb-2">
-          5000+ Patients
-        </h3>
-        <p className="text-gray-600">
-          Trusted by patients across the region.
-        </p>
-      </div>
-
-      <div className="bg-teal-50 rounded-3xl p-8">
-        <h3 className="font-bold text-lg mb-2">
-          24/7 Emergency
-        </h3>
-        <p className="text-gray-600">
-          Round-the-clock trauma and emergency support.
-        </p>
-      </div>
-
-      <div className="bg-teal-50 rounded-3xl p-8">
-        <h3 className="font-bold text-lg mb-2">
-          Modern Facilities
-        </h3>
-        <p className="text-gray-600">
-          MRI, CT Scan, ICU and advanced diagnostics.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section> */}
-
-      {/* Why Choose Ashwini Neuro Care */}
-<section className="py-24 bg-slate-50">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div className="text-center mb-16">
-      <span className="inline-flex items-center px-4 py-2 rounded-full bg-teal-100 text-teal-700 font-medium text-sm mb-4">
-        Why Choose Us
-      </span>
-
-      <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-        Why Patients Trust Ashwini Neuro Care
-      </h2>
-
-      <p className="text-slate-600 text-lg max-w-3xl mx-auto leading-relaxed">
-        Combining experienced specialists, modern facilities and
-        compassionate care to provide comprehensive neurological
-        and neurosurgical treatment under one roof.
-      </p>
-    </div>
-
-    {/* Stats */}
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
-
-      <div className="bg-white rounded-3xl p-8 text-center shadow-lg border border-slate-100 hover:-translate-y-2 transition-all">
-        <h3 className="text-5xl font-bold text-teal-600 mb-3">
-          5000+
-        </h3>
-        <p className="text-slate-600 font-medium">
-          Patients Treated
-        </p>
-      </div>
-
-      <div className="bg-white rounded-3xl p-8 text-center shadow-lg border border-slate-100 hover:-translate-y-2 transition-all">
-        <h3 className="text-5xl font-bold text-teal-600 mb-3">
-          14+
-        </h3>
-        <p className="text-slate-600 font-medium">
-          Years Experience
-        </p>
-      </div>
-
-      <div className="bg-white rounded-3xl p-8 text-center shadow-lg border border-slate-100 hover:-translate-y-2 transition-all">
-        <h3 className="text-5xl font-bold text-teal-600 mb-3">
-          24/7
-        </h3>
-        <p className="text-slate-600 font-medium">
-          Emergency Care
-        </p>
-      </div>
-
-      <div className="bg-white rounded-3xl p-8 text-center shadow-lg border border-slate-100 hover:-translate-y-2 transition-all">
-        <h3 className="text-5xl font-bold text-teal-600 mb-3">
-          MRI
-        </h3>
-        <p className="text-slate-600 font-medium">
-          CT & Diagnostics
-        </p>
-      </div>
-
-    </div>
-
-    {/* Trust Features */}
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-      <div className="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
-        <h4 className="font-bold text-slate-900 text-lg mb-3">
-          Expert Specialists
-        </h4>
-        <p className="text-slate-600">
-          Dedicated neurology and neurosurgery consultants with extensive clinical expertise.
-        </p>
-      </div>
-
-      <div className="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
-        <h4 className="font-bold text-slate-900 text-lg mb-3">
-          Stroke & Trauma Care
-        </h4>
-        <p className="text-slate-600">
-          Rapid diagnosis and treatment for neurological emergencies and accidents.
-        </p>
-      </div>
-
-      <div className="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
-        <h4 className="font-bold text-slate-900 text-lg mb-3">
-          Modern Technology
-        </h4>
-        <p className="text-slate-600">
-          Advanced MRI, CT Scan and neuro diagnostic facilities for accurate care.
-        </p>
-      </div>
-
-      <div className="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
-        <h4 className="font-bold text-slate-900 text-lg mb-3">
-          Patient-Centered Care
-        </h4>
-        <p className="text-slate-600">
-          Compassionate treatment focused on recovery, safety and long-term wellbeing.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-      <CTASection />
-    </div>
+      </section>
+    </main>
   );
 }

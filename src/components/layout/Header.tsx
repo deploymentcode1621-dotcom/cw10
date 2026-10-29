@@ -29,10 +29,21 @@ export default function Header() {
       setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", onScroll);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const toggleLanguage = () => {
+    const nextLanguage = language === "en" ? "mr" : "en";
+    setLanguage(nextLanguage);
+    const select = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+    if (select) {
+      select.value = nextLanguage;
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  };
 
   return (
     <header
@@ -47,9 +58,9 @@ export default function Header() {
       {/* Desktop Header */}
       {/* ========================= */}
 
-      <div className="hidden lg:block">
-        <div className="w-full px-6 lg:px-12 xl:px-16">
-          <div className="flex items-center justify-between h-[88px]">
+      <div className="hidden xl:block">
+        <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 xl:px-8 2xl:px-10">
+          <div className="grid h-[88px] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-5 2xl:gap-8">
 
             {/* Logo */}
 
@@ -57,23 +68,23 @@ export default function Header() {
               href="/"
               className="flex items-center gap-3 shrink-0"
             >
-              <div className="relative w-20 h-20">
+              <div className="relative h-14 w-14 shrink-0 2xl:h-16 2xl:w-16">
                 <Image
                   src="/images/logo.jpeg"
                   alt="Ashwini Neuro Care Logo"
                   fill
                   priority
-                  sizes="80px"
+                  sizes="(min-width: 1536px) 64px, 56px"
                   className="object-contain"
                 />
               </div>
 
               <div className="flex flex-col leading-none">
-                <h1 className="text-red-600 font-extrabold text-3xl">
+                <p className="whitespace-nowrap text-xl font-bold tracking-tight text-red-600 2xl:text-2xl">
                   Ashwini Neuro Care
-                </h1>
+                </p>
 
-                <span className="text-teal-600 text-sm font-semibold mt-1 uppercase tracking-wide">
+                <span className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-teal-800 2xl:text-xs">
                   Latur, Maharashtra
                 </span>
               </div>
@@ -81,7 +92,7 @@ export default function Header() {
 
             {/* Navigation */}
 
-            <nav className="flex items-center gap-1 ml-8">
+            <nav className="flex min-w-0 items-center justify-center gap-0.5 2xl:gap-1">
               {navItems.map((item) => (
                 <div
                   key={item.href}
@@ -97,7 +108,7 @@ export default function Header() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "flex items-center gap-1 px-4 py-2.5 rounded-lg text-[13.5px] font-medium transition-all",
+                      "flex items-center gap-1 whitespace-nowrap rounded-lg px-2 py-2.5 text-[13px] font-medium transition-colors 2xl:px-3 2xl:text-sm",
                       pathname === item.href
                         ? "text-teal-600 bg-teal-50"
                         : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
@@ -112,7 +123,8 @@ export default function Header() {
 
                   {item.children &&
                     activeDropdown === item.label && (
-                      <div className="absolute top-full left-0 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 mt-1.5 z-50">
+                      <div className="absolute left-0 top-full z-50 w-60 pt-2">
+                        <div className="rounded-xl border border-gray-100 bg-white py-2 shadow-lg">
                         {item.children.map((child) => (
                           <Link
                             key={child.href}
@@ -122,6 +134,7 @@ export default function Header() {
                             {child.label}
                           </Link>
                         ))}
+                        </div>
                       </div>
                     )}
                 </div>
@@ -130,17 +143,17 @@ export default function Header() {
 
             {/* Right Side */}
 
-            <div className="flex items-center gap-4">
+            <div className="flex shrink-0 items-center gap-2.5">
 
               <Link
                 href="/appointment"
-                className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold px-6 py-3 rounded-xl shadow-sm transition-all"
+                className="flex h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl bg-teal-700 px-4 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-teal-800 2xl:px-5 2xl:text-sm"
               >
                 <Calendar className="w-4 h-4" />
-                Book Appointment
+                Appointment Enquiry
               </Link>
 
-              <button className="w-11 h-11 flex items-center justify-center rounded-xl border border-gray-200 bg-white hover:bg-teal-50 hover:border-teal-300 font-bold shadow-sm">
+              <button type="button" onClick={toggleLanguage} aria-label={language === "en" ? "View in Marathi" : "View in English"} className="w-11 h-11 flex items-center justify-center rounded-xl border border-gray-200 bg-white hover:bg-teal-50 hover:border-teal-300 font-bold shadow-sm">
                 <span className="notranslate text-lg">
                   {language === "en" ? "अ" : "A"}
                 </span>
@@ -156,8 +169,8 @@ export default function Header() {
       {/* Mobile Header */}
       {/* ========================= */}
 
-      <div className="lg:hidden">
-        <div className="flex items-center justify-between h-16 px-4">
+      <div className="xl:hidden">
+        <div className="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between gap-3 px-4 sm:h-20 sm:px-6">
 
           {/* Logo */}
 
@@ -165,22 +178,22 @@ export default function Header() {
             href="/"
             className="flex items-center gap-2 flex-1 min-w-0"
           >
-            <div className="relative w-10 h-10 shrink-0">
+            <div className="relative h-11 w-11 shrink-0 sm:h-14 sm:w-14">
               <Image
                 src="/images/logo.jpeg"
                 alt="Ashwini Neuro Care"
                 fill
                 priority
-                sizes="40px"
+                sizes="(min-width: 640px) 56px, 44px"
                 className="object-contain"
               />
             </div>
 
             <div className="min-w-0 overflow-hidden">
 
-              <h1 className="truncate text-red-600 font-bold text-base">
+              <p className="truncate text-red-600 font-bold text-base">
                 Ashwini Neuro Care
-              </h1>
+              </p>
 
               <p className="truncate text-[11px] text-teal-600 font-semibold uppercase">
                 Latur, Maharashtra
@@ -192,7 +205,7 @@ export default function Header() {
           {/* Language */}
 
           <button
-            className="ml-2 mr-2 w-9 h-9 rounded-lg border flex items-center justify-center text-sm font-bold"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-200 text-sm font-bold"
             onClick={() => {
               const newLang =
                 language === "en" ? "mr" : "en";
@@ -234,7 +247,7 @@ export default function Header() {
       {/* ========================= */}
 
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg animate-in slide-in-from-top duration-200">
+        <div className="xl:hidden max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-gray-100 bg-white shadow-lg">
           <div className="px-4 py-4">
 
             {navItems.map((item) => (
@@ -307,7 +320,7 @@ export default function Header() {
 
             <div className="border-t my-5" />
 
-            {/* Book Appointment */}
+            {/* Appointment Enquiry */}
 
             <Link
               href="/appointment"
@@ -315,7 +328,7 @@ export default function Header() {
               className="flex items-center justify-center gap-2 w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 rounded-xl transition-colors"
             >
               <Calendar className="w-4 h-4" />
-              Book Appointment
+              Appointment Enquiry
             </Link>
                         {/* Language Switch */}
 
