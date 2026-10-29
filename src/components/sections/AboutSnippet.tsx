@@ -3,23 +3,37 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle, ArrowRight, CalendarDays, ScanLine, Siren, Stethoscope } from "lucide-react";
 
-const highlights = [
-  "First dedicated Neuro Care Centre in Latur",
-  "3 Tesla MRI & 128-slice CT available 24/7",
-  "Level-II Trauma Centre designation",
-  "NABH accredited quality standards",
-  "20+ years of neurological excellence",
-  "Compassionate, patient-centred care",
-];
+// ─── VERIFIED FACTS — keep only what the hospital can prove with documents ───
+const FACTS = {
+  legalName: "Ashwini Accident & Neuro Care Center",
+  established: 2005,
+  // Show a line only if the document is in hand. Delete the rest.
+  highlights: [
+    "Established in 2005 in Latur",
+    "3 Tesla MRI and 128-slice CT scan facilities", // confirm equipment + availability
+    "CT scan available 24×7", // confirm
+    "NABH accredited · Cert. No. XXXX · valid till XXXX", // fill from certificate
+    "Trauma care services · Level-II designation by [issuing authority]", // only if officially designated
+    "Registered medical practitioners in every department", // confirm
+  ],
+  stats: [
+    { icon: CalendarDays, value: "Since 2005", label: "Serving Latur" },
+    { icon: ScanLine, value: "3T MRI", label: "& 128-slice CT" },
+    { icon: Siren, value: "24×7", label: "Emergency services" }, // confirm
+    { icon: Stethoscope, value: "Neuro · Spine · Trauma", label: "Departments" }, // confirm
+  ],
+};
 
 export default function AboutSnippet() {
   return (
-  <section className="bg-white py-12 lg:py-20">
-     <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-16 lg:gap-20 items-center">
-          {/* Image */}
+    <section className="relative bg-gradient-to-b from-white to-teal-50/40 py-14 lg:py-24 overflow-hidden">
+      <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-teal-100/50 blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-14 lg:gap-20 items-center">
+          {/* Image — use a REAL photo of the building / equipment (no patients) */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -28,23 +42,21 @@ export default function AboutSnippet() {
             className="relative"
           >
             <Image
-              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&h=700&fit=crop"
-              alt="Ashwini Neuro Care Center"
+              src="/images/hospital-building.jpg"
+              alt={`${FACTS.legalName}, Latur — hospital building`}
               width={900}
               height={700}
               priority
-              className="w-full h-[320px] md:h-[420px] lg:h-[480px] object-cover rounded-3xl shadow-2xl"
+              className="w-full h-[320px] md:h-[420px] lg:h-[500px] object-cover rounded-3xl shadow-2xl"
             />
 
-            {/* Experience Card */}
-           <div className="absolute bottom-4 right-4 hidden lg:block">
-  <div className="animate-glow rounded-3xl bg-teal-600 px-8 py-6 text-white shadow-2xl">
-    <p className="text-5xl font-bold leading-none">20+</p>
-    <p className="mt-2 text-sm uppercase tracking-wide text-teal-100">
-      Years of Excellence
-    </p>
-  </div>
-</div>
+            {/* Factual badge — "Since", not "Excellence" */}
+            <div className="absolute -bottom-5 right-4 lg:right-6">
+              <div className="rounded-3xl bg-teal-600 px-6 py-4 lg:px-8 lg:py-6 text-white shadow-2xl">
+                <p className="text-xs uppercase tracking-widest text-teal-100">Established</p>
+                <p className="text-4xl lg:text-5xl font-bold leading-none mt-1">{FACTS.established}</p>
+              </div>
+            </div>
           </motion.div>
 
           {/* Content */}
@@ -54,42 +66,30 @@ export default function AboutSnippet() {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-[0.2em] text-teal-600">
+            <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-[0.2em] text-teal-700">
               About Us
             </span>
 
-           <h2 className="mb-6 text-3xl md:text-4xl xl:text-5xl font-bold leading-tight text-gray-900">
-  Marathwada&apos;s Most Trusted Neuro Care Hospital
-</h2>
+            <h2 className="mb-6 text-3xl md:text-4xl xl:text-5xl font-bold leading-tight text-gray-900">
+              Neurology, Spine &amp; Trauma Care in Latur
+            </h2>
 
-<p className="mb-4 text-base lg:text-lg leading-7 text-gray-600">
-  Established in 2005, Ashwini Accident & Neuro Care Center has
-  been the cornerstone of neurological healthcare for Latur and
-  the entire Marathwada region. Our hospital combines cutting-edge
-  technology with compassionate, patient-centred care.
-</p>
+            <p className="mb-4 text-base lg:text-lg leading-7 text-gray-600">
+              {FACTS.legalName} was established in {FACTS.established} in Latur, Maharashtra. The hospital provides
+              diagnosis and treatment services for neurological conditions, spine disorders and accident-related
+              injuries.
+            </p>
 
-<p className="mb-6 text-base lg:text-lg leading-7 text-gray-600">
-  From managing acute strokes and traumatic brain injuries to
-  performing complex neurosurgical procedures, our multidisciplinary
-  team of experts is committed to delivering world-class outcomes
-  close to home.
-</p>
+            <p className="mb-7 text-base lg:text-lg leading-7 text-gray-600">
+              Services include the evaluation and management of stroke and head injuries, neurosurgical procedures and
+              imaging support, delivered by a team of qualified, registered medical practitioners.
+            </p>
 
-           
-
-            {/* Highlights */}
-            <div className="mb-2 grid gap-3 sm:grid-cols-2">
-              {highlights.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-3 rounded-xl p-2 transition-colors hover:bg-teal-50"
-                >
-                  <CheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-teal-500" />
-
-                  <span className="leading-relaxed text-gray-700">
-                    {item}
-                  </span>
+            <div className="mb-8 grid gap-2 sm:grid-cols-2">
+              {FACTS.highlights.map((item) => (
+                <div key={item} className="flex items-start gap-3 rounded-xl p-2 transition-colors hover:bg-teal-50">
+                  <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-teal-600" />
+                  <span className="leading-relaxed text-gray-700 text-[15px]">{item}</span>
                 </div>
               ))}
             </div>
@@ -102,6 +102,27 @@ export default function AboutSnippet() {
               <ArrowRight className="h-5 w-5" />
             </Link>
           </motion.div>
+        </div>
+
+        {/* Fact cards — attractive, informational, fully allowed */}
+        <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          {FACTS.stats.map(({ icon: Icon, value, label }, i) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -4 }}
+              className="rounded-2xl border border-teal-100 bg-white p-5 lg:p-6 shadow-sm hover:shadow-lg transition-shadow"
+            >
+              <div className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+                <Icon className="h-5 w-5" />
+              </div>
+              <p className="text-lg lg:text-xl font-bold text-gray-900 leading-snug">{value}</p>
+              <p className="text-sm text-gray-500 mt-1">{label}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
